@@ -13,6 +13,14 @@ public class Invoice {
 	private String gstIN;
 	private String placeOfSupply;
 	private String billingAddress;
+	public Invoice(String invoiceId, Date invoiceDate, Date dueDate, Customer customer, Double totalInvoiceValue) {
+		super();
+		this.invoiceId = invoiceId;
+		this.invoiceDate = invoiceDate;
+		this.dueDate = dueDate;
+		this.customer = customer;
+		this.totalInvoiceValue = totalInvoiceValue;
+	}
 	private String shippingAddress;
 	private Double grandTotal;
 	private Double totalInvoiceValue;
