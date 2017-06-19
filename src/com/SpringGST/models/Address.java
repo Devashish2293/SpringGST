@@ -9,6 +9,16 @@ public class Address {
 	private String emailId;
 	private Long landlineNum;
 	
+	public Address(String state, String address, Long pincode, String city, String emailId, Long landlineNum) {
+		super();
+		this.state = state;
+		this.address = address;
+		this.pincode = pincode;
+		this.city = city;
+		this.emailId = emailId;
+		this.landlineNum = landlineNum;
+	}
+	
 	public String getState() {
 		return state;
 	}
