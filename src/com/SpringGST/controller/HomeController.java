@@ -41,4 +41,16 @@ public class HomeController {
     invoiceList.add(invoice4);
     return new ModelAndView("SalesInvoices" , "invoiceList" ,  invoiceList);
   }
+  
+  @RequestMapping("/addinvoice")
+  public ModelAndView newSalesInvoice(HttpServletRequest request, HttpServletResponse response)
+    throws ServletException, IOException,ParseException {
+	  Customer customer1 = new Customer("Arias Tech.");
+	  Invoice msg = new Invoice("MH39001",new SimpleDateFormat("dd/MM/yyyy").parse("22/5/2017") , new SimpleDateFormat("dd/MM/yyyy").parse("17/7/2017"), customer1, 455290.0);
+	  msg.setInvoiceId("qwe123");
+	  msg.setReference("moksh");
+    logger.info("Return View");
+    //String message ="Create Sales Invoice";
+    return new ModelAndView("AddSalesInvoices" , "msg" ,  msg);
+  }
 }

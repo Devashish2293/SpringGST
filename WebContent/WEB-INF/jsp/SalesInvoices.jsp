@@ -1,6 +1,7 @@
 
 <%@include file="/WEB-INF/jsp/header.jsp" %>
 <%@taglib prefix="spring" uri="http://www.springframework.org/tags" %>
+
 <div class="container-wrapper">
     <div class="container">
 	<div class="page-header"  >
@@ -9,7 +10,7 @@
 				<p class="lead">Summary</p>
 				</div>
 				<div class="col-md-2 pull-right">
-				<a class="btn btn-success">Add New Invoice</a>
+				<a class="btn btn-success" href="<c:url value="/addinvoice" />" >Add New Invoice</a>
 			</div>
 			</div>
 			
