@@ -4,7 +4,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
-import com.SpringGST.models.Customer;
+import com.SpringGST.models.Business;
 import com.SpringGST.models.Invoice;
 
 import javax.servlet.ServletException;
@@ -28,9 +28,9 @@ public class HomeController {
     throws ServletException, IOException, ParseException {
     logger.info("Return View");
     List<Invoice> invoiceList = new ArrayList();
-    Customer customer1 = new Customer("Arias Tech.");
-    Customer customer2 = new Customer("Aztel Pvt. Ltd");
-    Customer customer3 = new Customer("Syntech Pvt. Ltd");
+    Business customer1 = new Business("Arias Tech.");
+    Business customer2 = new Business("Aztel Pvt. Ltd");
+    Business customer3 = new Business("Syntech Pvt. Ltd");
     Invoice invoice1 = new Invoice("MH39001",new SimpleDateFormat("dd/MM/yyyy").parse("22/5/2017") , new SimpleDateFormat("dd/MM/yyyy").parse("17/7/2017"), customer1, 455290.0);
     Invoice invoice2 = new Invoice("MH39002",new SimpleDateFormat("dd/MM/yyyy").parse("22/5/2017") , new SimpleDateFormat("dd/MM/yyyy").parse("17/7/2017"), customer2, 23466.0);
     Invoice invoice3 = new Invoice("MH39003",new SimpleDateFormat("dd/MM/yyyy").parse("22/5/2017") , new SimpleDateFormat("dd/MM/yyyy").parse("17/7/2017"), customer3, 535290.0);
@@ -40,5 +40,17 @@ public class HomeController {
     invoiceList.add(invoice3);
     invoiceList.add(invoice4);
     return new ModelAndView("SalesInvoices" , "invoiceList" ,  invoiceList);
+  }
+  
+  @RequestMapping("/addinvoice")
+  public ModelAndView newSalesInvoice(HttpServletRequest request, HttpServletResponse response)
+    throws ServletException, IOException,ParseException {
+	  Customer customer1 = new Customer("Arias Tech.");
+	  Invoice msg = new Invoice("MH39001",new SimpleDateFormat("dd/MM/yyyy").parse("22/5/2017") , new SimpleDateFormat("dd/MM/yyyy").parse("17/7/2017"), customer1, 455290.0);
+	  msg.setInvoiceId("qwe123");
+	  msg.setReference("moksh");
+    logger.info("Return View");
+    //String message ="Create Sales Invoice";
+    return new ModelAndView("AddSalesInvoices" , "msg" ,  msg);
   }
 }
