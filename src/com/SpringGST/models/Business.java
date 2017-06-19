@@ -1,24 +1,23 @@
 package com.SpringGST.models;
 
-public class Customer {
-
-	private String customerId;
+public class Business extends AbstractCustomer {
+	
 	private String businessName;
 	private String contactPerson;
 	private String gstIN;
-	private Long mobileNum;
 
-	
-	public Customer(String businessName) {
-		super();
+	public Business(String businessName) {
 		this.businessName = businessName;
 	}
-	public String getCustomerId() {
-		return customerId;
+
+	public Business(String customerId, Long mobileNum, Address address, String businessName, String contactPerson,
+			String gstIN) {
+		super(customerId, mobileNum, address);
+		this.businessName = businessName;
+		this.contactPerson = contactPerson;
+		this.gstIN = gstIN;
 	}
-	public void setCustomerId(String customerId) {
-		this.customerId = customerId;
-	}
+	
 	public String getBusinessName() {
 		return businessName;
 	}
@@ -37,17 +36,5 @@ public class Customer {
 	public void setGstIN(String gstIN) {
 		this.gstIN = gstIN;
 	}
-	public Long getMobileNum() {
-		return mobileNum;
-	}
-	public void setMobileNum(Long mobileNum) {
-		this.mobileNum = mobileNum;
-	}
-	public Address getAddress() {
-		return address;
-	}
-	public void setAddress(Address address) {
-		this.address = address;
-	}
-	private Address address;
+
 }
