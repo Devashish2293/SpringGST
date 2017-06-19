@@ -26,7 +26,7 @@
     		  <div class="col-md-6">
     		     <table>
     		    <tr><th>Invoice Date</th></tr>
-    		    <td><input type="text" id="Text1" value="12-12-12"></td>
+    		    <td><input type="text" id="Text1" value="${msg.invoiceDate }"></td>
     		  </table>
     		  </div>
     		  </div>
@@ -42,7 +42,7 @@
     		  <div class="col-md-6">
     		     <table>
     		    <tr><th>Due Date</th></tr>
-    		    <td><input type="text" id="Text1" value="12-01-13"></td>
+    		    <td><input type="text" id="Text1" value="${msg.dueDate }"></td>
     		  </table>
     		  </div>
     		  </div>
