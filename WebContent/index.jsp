@@ -8,6 +8,6 @@
 <title>Insert title here</title>
 </head>
 <body>
-<a href="<c:url value="/welcome" />" > Click here to Enter</a>
+<a href="<c:url value="/invoice" />" > Click here to Enter</a>
 </body>
 </html>

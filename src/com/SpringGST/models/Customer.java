@@ -7,6 +7,12 @@ public class Customer {
 	private String contactPerson;
 	private String gstIN;
 	private Long mobileNum;
+
+	
+	public Customer(String businessName) {
+		super();
+		this.businessName = businessName;
+	}
 	public String getCustomerId() {
 		return customerId;
 	}
