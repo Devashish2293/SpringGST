@@ -8,6 +8,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.SpringGST.models.Business;
 import com.SpringGST.models.Invoice;
+import com.SpringGST.models.Item;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
@@ -68,5 +69,18 @@ public class HomeController {
 	  System.out.println("Inoice Id : " + invoice.getInvoiceId());
 	  System.out.println("gstIN(Qty):" + invoice.getGstIN());
     return "redirect:/invoice";
+  }
+  
+  @RequestMapping("/items")
+  public ModelAndView getItemsPage(){
+	  Item newItem = new Item();
+	  
+	  return new ModelAndView("Items","newItem",newItem);
+  }
+  @RequestMapping(value = "/items/addItem" , method = RequestMethod.POST)
+  public String addItem(@ModelAttribute("newItem") Item item){
+	 
+	  System.out.println(item.getHSN() + item.getItemDescription());
+	  return "redirect:/items";
   }
 }

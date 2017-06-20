@@ -5,6 +5,7 @@ public class Item {
 
 	private Long sequence;
 	private String itemDescription;
+	private String SKU;
 	private ItemType itemType;
 	private String HSN;
 	private Long quantity;
@@ -18,6 +19,19 @@ public class Item {
 	private Double sgstPercentage;
 	private Double sgstAmount;
 	private Double igstPercentage;
+	private String unitOfMeasurement;
+	public String getUnitOfMeasurement() {
+		return unitOfMeasurement;
+	}
+	public void setUnitOfMeasurement(String unitOfMeasurement) {
+		this.unitOfMeasurement = unitOfMeasurement;
+	}
+	public String getSKU() {
+		return SKU;
+	}
+	public void setSKU(String sKU) {
+		SKU = sKU;
+	}
 	public Long getSequence() {
 		return sequence;
 	}
