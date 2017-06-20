@@ -1,11 +1,14 @@
 package com.SpringGST.controller;
 
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.SpringGST.models.Business;
 import com.SpringGST.models.Invoice;
+import com.SpringGST.models.Item;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
@@ -52,5 +55,18 @@ public class HomeController {
     logger.info("Return View");
     //String message ="Create Sales Invoice";
     return new ModelAndView("AddSalesInvoices" , "msg" ,  msg);
+  }
+  
+  @RequestMapping("/items")
+  public ModelAndView getItemsPage(){
+	  Item newItem = new Item();
+	  
+	  return new ModelAndView("Items","newItem",newItem);
+  }
+  @RequestMapping(value = "/items/addItem" , method = RequestMethod.POST)
+  public String addItem(@ModelAttribute("newItem") Item item){
+	 
+	  System.out.println(item.getHSN() + item.getItemDescription());
+	  return "redirect:/items";
   }
 }
