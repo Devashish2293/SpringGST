@@ -1,7 +1,9 @@
 package com.SpringGST.controller;
 
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.SpringGST.models.Business;
@@ -46,11 +48,25 @@ public class HomeController {
   public ModelAndView newSalesInvoice(HttpServletRequest request, HttpServletResponse response)
     throws ServletException, IOException,ParseException {
 	  Business customer1 = new Business("Arias Tech.");
-	  Invoice msg = new Invoice("MH39001",new SimpleDateFormat("dd/MM/yyyy").parse("22/5/2017") , new SimpleDateFormat("dd/MM/yyyy").parse("17/7/2017"), customer1, 455290.0);
+	  Invoice invoice = new Invoice("MH39001",new SimpleDateFormat("dd/MM/yyyy").parse("22/5/2017") , new SimpleDateFormat("dd/MM/yyyy").parse("17/7/2017"), customer1, 455290.0);
 	/*  msg.setInvoiceId("qwe123");
 	  msg.setReference("moksh");*/
     logger.info("Return View");
     //String message ="Create Sales Invoice";
-    return new ModelAndView("AddSalesInvoices" , "msg" ,  msg);
+    return new ModelAndView("AddSalesInvoices" , "invoice" ,  invoice);
+  }
+  
+  @RequestMapping(value="/save" , method=RequestMethod.POST)
+  public String addInvoice(@ModelAttribute("invoice") Invoice invoice)
+    throws ServletException, IOException,ParseException {
+	 /* Business customer1 = new Business("Arias Tech.");
+	  Invoice msg = new Invoice("MH39001",new SimpleDateFormat("dd/MM/yyyy").parse("22/5/2017") , new SimpleDateFormat("dd/MM/yyyy").parse("17/7/2017"), customer1, 455290.0);*/
+	/*  msg.setInvoiceId("qwe123");
+	  msg.setReference("moksh");*/
+   /* logger.info("Return View");*/
+    //String message ="Create Sales Invoice";
+	  System.out.println("Inoice Id : " + invoice.getInvoiceId());
+	  System.out.println("gstIN(Qty):" + invoice.getGstIN());
+    return "redirect:/invoice";
   }
 }

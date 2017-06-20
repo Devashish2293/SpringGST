@@ -1,32 +1,39 @@
 
 <%@include file="/WEB-INF/jsp/header.jsp" %>
+<%@taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
+
 
 <div class="container-wrapper">
     <div class="container">
+    <h3>Create Sales Invoice</h3>
+     <form:form 
+    		action="/SpringGST/save" method="post" commandName="invoice" >
     <div class="row">
-    <div class="col-md-6">
-    	<h3>Create Sales Invoice</h3>
-    </div>
-    <div class="col-md-6">
+    <!-- <div class="col-md-6">
+    	
+    </div> -->
+  <!--   <div class="col-md-6">
     	<a href="#" class="btn btn-default pull-right" style="margin:3">Back</a>
     	<a href="#" class="btn btn-success pull-right" style="margin:3">Save Invoice</a>
-    </div>
-    </div>
+    </div> -->
+  
     	
     	<br>
-    		<div class="row">
+   
+    		<!-- <div class="row"> -->
     		<div class="col-md-5">
     		  <div class="row">
     		  <div class="col-md-6">
+    			
     		  <table>
     		    <tr><th>Invoice Id</th></tr>
-    		    <td><input type="text" id="myText2" value="${msg.invoiceId }"></td>
+    		    <td><form:input type="text" id="invoiceId" path="invoiceId" value="${invoice.invoiceId }"></form:input></td>
     		  </table>
     		  </div>
     		  <div class="col-md-6">
     		     <table>
     		    <tr><th>Invoice Date</th></tr>
-    		    <td><input type="text" id="Text1" value="${msg.invoiceDate }"></td>
+    		    <td><form:input type="date" id="invoiceDate" path="" value="${invoice.invoiceDate }"></form:input></td>
     		  </table>
     		  </div>
     		  </div>
@@ -36,25 +43,28 @@
     		  <div class="col-md-6">
     		  <table>
     		    <tr><th>Reference</th></tr>
-    		    <td><input type="text" id="myText2" value="${msg.reference}"></td>
+    		    <td><form:input type="text" id="reference" path="reference" value="${invoice.reference}"></form:input></td>
     		  </table>
     		  </div>
     		  <div class="col-md-6">
     		     <table>
     		    <tr><th>Due Date</th></tr>
-    		    <td><input type="text" id="Text1" value="${msg.dueDate }"></td>
+    		    <td><form:input type="date" id="dueDate" path="" value="${invoice.dueDate }"></form:input></td>
     		  </table>
     		  </div>
     		  </div>
     		  </div>
-    		  </div>
+    		  <!-- </div> -->
+    		 
+    		  <br>
+    		  <br>
     		  <br>
     		  <br>
     		  <div class="row">
     		  <div class="col-md-5">
     		  <table>
     		    <tr><th>Customer Name</th></tr>
-    		    <td><input type="text" id="myText4" style="width:392px;"></td>
+    		    <td><form:input type="text" id="custName" path="" style="width:392px;"></form:input></td>
     		  </table>
     		  </div>
     		  <div class="col-md-5 col-md-offset-2">
@@ -62,13 +72,13 @@
     		  <div class="col-md-6">
     		  <table>
     		    <tr><th>Billing Address <a href="/editAddress">edit</a></th></tr>
-    		    <td><input type="hidden" id="myText2"></td>
+    		    <td><form:input type="hidden" path="" id="billAddrs"></form:input></td>
     		  </table>
     		  </div>
     		  <div class="col-md-6">
     		     <table>
     		    <tr><th>Shipping Address</th></tr>
-    		    <td><input type="hidden" id="Text1"></td>
+    		    <td><form:input type="hidden" path="" id="Text1"></form:input></td>
     		  </table>
     		  </div>
     		  </div>
@@ -87,49 +97,52 @@
     		  <br>
     		  <div class="row">
     		  <div class="col-ms-12">
-    		  <div class="table-responsive">
-    		  	<table class="table">
+    		  <div class="table-responsive overflow: visible">
+    		  	<table class="table-condensed table-bordered" >
     		  	<tr><th rowspan="2">Item Dscptn</th><th rowspan="2">Item type</th><th rowspan="2">HSN</th><th rowspan="2">Qty</th><th rowspan="2" style="text-align:left;">Rate/Item</th><th rowspan="2" style="text-align:right;">Discount</th><th rowspan="2">Taxable Value</th><th colspan="2" rowspan="1">CGST</th><th colspan="2" rowspan="1">SGST</th><th colspan="2" rowspan="1">IGST</th><th rowspan="2">Total</th></tr>
     		  	<tr><td>%</td><td>Amt</td><td>%</td><td>Amt</td><td>%</td><td>Amt</td></tr>
-    		  	<tr><td><div class="dropdown"><button class="btn btn-Default dropdown-toggle" type="button" data-toggle="dropdown">Select <span class="caret"></span><span class="sr-only"></span>
+    		  	<tr><td><div class="dropdown"><button class="btn btn-Default dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">Select Item<span class="caret"></span><span class="sr-only"></span>
     						</button><ul class="dropdown-menu">
-      						<li class="dropdown-header">Add New Invoice</li><li><a href="#">HTML</a></li></ul></div></td>
-      			<td><input type="text" id="text9" ></td>
-      			<td><input type="text" id="text6"></td>
+      						<li><a href="#">ADD NEW ITEM</a></li></ul></div></td>
+      			<td><form:input type="hidden" id="itemtype" path=""></form:input></td>
+      			<td><form:input type="hidden" id="HSN" path=""></form:input></td>
+      			<td><form:input type="text" id="Qty" style=" width: 50px;" path="gstIN"></form:input></td>
+      			<td><form:input type="text" id="Rate/Item" style="width: 50px;" path=""></form:input></td>
+      			<td><form:input type="text" id="Discount" style="width: 50px;" path=""></form:input></td>
+      			<td><form:input type="text" id="TaxableValue" style="width: 50px;" path=""></form:input></td>
+      			<td><form:input type="text" id="CGST%" style="width: 50px;" path=""></form:input></td>
+      			<td><form:input type="text" id="CGSTAmt" style="width: 50px;" path=""></form:input></td>
+      			<td><form:input type="text" id="SGST%" style="width: 50px;" path=""></form:input></td>
+      			<td><form:input type="text" id="SGSTAmt" style="width: 50px;" path=""></form:input></td>
+      			<td><form:input type="text" id="IGST%" style="width: 50px;" path=""></form:input></td>
+      			<td><form:input type="text" id="IGSTAmt" style="width: 50px;" path=""></form:input></td>
+      			<td><form:input type="hidden" id="Total" path=""></form:input></td>
+      			</tr>
     		  	</table>
     		  </div>
     		  </div>
     		  </div>
+    		  </div>
+    		  <br>
+    		  <br>
+    		  
+    		  <div class="row">
+    			<div class="col-md-6">
+    		   <input type="submit" id="Save Invoice" value="Save Invoice" class="btn btn-success pull-right">
+    		   </div>
+    		   <div class="col-md-6">
+    		   <input type="reset" id="Back" value="Reset" class="btn btn-default pull-left">
+    		     </div>
+    		     </div>
+    		     
+    		 <!--   <a type="submit" class="btn btn-success" style="margin:3">Save Invoice</a> -->
+    		  </form:form>
+    		 
+    		 
     </div>
+    
 </div>
-  			<%-- <form name="frm" method="get" action="#">
- 	<table border="0" width="100%" cellpadding="2">
- 		<tr><th>Invoice Id</th><th>Invoice Date</th><th>Reference</th><th>Due Date</th></tr>
-   		<tr>  
-   			<td><input type="text" id="myText2" value="${msg.invoiceId }"></td> 
-    		<td><input type="text" id="Text1" value="12-12-12"></td>
-     		<td><input type="text" id="myText3" value="${msg.reference}"></td> 
-     		<td><input type="text" id="myText4" value="12-01-13"></td>
-   		</tr>   
-  	</table>
-   </form> --%>
-   <!-- <div class="container">
-   		<div class="row">
-   			<div class="col-md-6"> 
-   				<table border="0" width="100%" cellpadding="2">
-   					<tr><th colspan="2">Customer Name</th></tr>
-  					<tr><td colspan="2"><input type="text" id="myText4" style="width:455px;"></td></tr>
-   				</table>
-   			</div>
-   			<div class="col-md-6">
-   				<table border="0" width="100%" cellpadding="2">
-   					<tr><th colspan="2">BillingAddress</th><th>ShippingAddress</th></tr>
-   				</table>
-   			</div>
-   		</div>
-   </div>
-    -->
- 
+  			 
 
  <%@include file="/WEB-INF/jsp/footer.jsp" %>
  

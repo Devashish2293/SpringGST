@@ -13,7 +13,6 @@
 				<a class="btn btn-success" href="<c:url value="/addinvoice" />" >Add New Invoice</a>
 			</div>
 			</div>
-			
 			<table class="table table-striped table-hover">
 				<thead>
 					<tr class="bg-primary">
@@ -38,6 +37,7 @@
 				</c:forEach>
 
 			</table>
+			
 </div>
 </div>
  <%@include file="/WEB-INF/jsp/footer.jsp" %>
