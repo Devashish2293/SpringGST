@@ -24,18 +24,18 @@
 						<th>Selling Price(Rs.)</th>
 						<th>Purchase Price(Rs.)</th>
 						<th>Discount(%)</th>
+						<th></th>
 					</tr>
 				</thead>
 				<c:forEach items="${itemList}" var="item">
 					<tr>
-						
 						<td>${item.itemDescription}</td>
 						<td>${item.SKU}</td>
 						<td>${item.HSN}</td>
 						<td>${item.sellingPrice}</td>
 						<td>${item.purchasePrice}</td>
 						<td>${item.discount}</td>
-						<td><a href="<spring:url value="/invoice/viewInvoice/${invoice.invoiceId}"/>"><span class="glyphicon glyphicon-info-sign"></span></a></td>
+						<td><a href="<spring:url value="/item/editItem/${item.SKU}"/>"><span class="glyphicon glyphicon-info-sign"></span></a></td>
 					</tr>
 				</c:forEach>
 

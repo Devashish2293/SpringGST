@@ -19,6 +19,8 @@ public class Item {
 	private Double sgstPercentage;
 	private Double sgstAmount;
 	private Double igstPercentage;
+	private Double igstAmount;
+	private Double Total;
 	private String unitOfMeasurement;
 	public String getUnitOfMeasurement() {
 		return unitOfMeasurement;
@@ -37,6 +39,12 @@ public class Item {
 	}
 	public void setSequence(Long sequence) {
 		this.sequence = sequence;
+	}
+	public Double getIgstAmount() {
+		return igstAmount;
+	}
+	public void setIgstAmount(Double igstAmount) {
+		this.igstAmount = igstAmount;
 	}
 	public String getItemDescription() {
 		return itemDescription;
@@ -122,19 +130,12 @@ public class Item {
 	public void setIgstPercentage(Double igstPercentage) {
 		this.igstPercentage = igstPercentage;
 	}
-	public Double getIgstAmount() {
-		return igstAmount;
-	}
-	public void setIgstAmount(Double igstAmount) {
-		this.igstAmount = igstAmount;
-	}
+
 	public Double getTotal() {
 		return Total;
 	}
 	public void setTotal(Double total) {
 		Total = total;
 	}
-	private Double igstAmount;
-	private Double Total;
-	
+
 }

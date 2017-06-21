@@ -1,11 +1,14 @@
 package com.SpringGST.controller;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.SpringGST.Dao.ItemDAO;
 import com.SpringGST.models.Business;
 import com.SpringGST.models.Invoice;
 import com.SpringGST.models.Item;
@@ -25,6 +28,9 @@ import java.util.List;
 @Controller
 public class HomeController {
   protected final Log logger = LogFactory.getLog(getClass());
+  
+  @Autowired
+  ItemDAO itemDAO;
   
   @RequestMapping("/invoice")
   public ModelAndView handleRequest(HttpServletRequest request, HttpServletResponse response)
@@ -58,15 +64,20 @@ public class HomeController {
   }
   
   @RequestMapping("/items")
-  public ModelAndView getItemsPage(){
+  public String getItemsPage(Model model){
 	  Item newItem = new Item();
-	  
-	  return new ModelAndView("Items","newItem",newItem);
+	  List<Item> itemList = itemDAO.getItemList();
+	  model.addAttribute("itemList",itemList);
+	  model.addAttribute("newItem",newItem);
+
+	  return "Items";
   }
   @RequestMapping(value = "/items/addItem" , method = RequestMethod.POST)
   public String addItem(@ModelAttribute("newItem") Item item){
 	 
 	  System.out.println(item.getHSN() + item.getItemDescription());
+	  itemDAO.addItem(item);
+	 
 	  return "redirect:/items";
   }
 }
