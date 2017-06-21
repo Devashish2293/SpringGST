@@ -13,6 +13,12 @@ public class Invoice {
 	private String gstIN;
 	private String placeOfSupply;
 	private String billingAddress;
+
+	private String shippingAddress;
+	private Double grandTotal;
+	private Double totalInvoiceValue;
+	private List<Item> itemList;
+	
 	public Invoice(String invoiceId, Date invoiceDate, Date dueDate, Business customer, Double totalInvoiceValue) {
 		super();
 		this.invoiceId = invoiceId;
@@ -21,12 +27,10 @@ public class Invoice {
 		this.customer = customer;
 		this.totalInvoiceValue = totalInvoiceValue;
 	}
-	private String shippingAddress;
-	private Double grandTotal;
-	private Double totalInvoiceValue;
-	private List<Item> itemList;
-	
-	
+	public Invoice() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
 	
 	public Double getTotalInvoiceValue() {
 		return totalInvoiceValue;
