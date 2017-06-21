@@ -103,7 +103,7 @@
     		  	<tr><td>%</td><td>Amt</td><td>%</td><td>Amt</td><td>%</td><td>Amt</td></tr>
     		  	<tr><td><div class="dropdown"><button class="btn btn-Default dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">Select Item<span class="caret"></span><span class="sr-only"></span>
     						</button><ul class="dropdown-menu">
-      						<li><a href="#">ADD NEW ITEM</a></li></ul></div></td>
+      						<li><a href="<c:url value="/items" />" >ADD NEW ITEM</a></li></ul></div></td>
       			<td><form:input type="hidden" id="itemtype" path=""></form:input></td>
       			<td><form:input type="hidden" id="HSN" path=""></form:input></td>
       			<td><form:input type="text" id="Qty" style=" width: 50px;" path="gstIN"></form:input></td>
@@ -134,7 +134,7 @@
     		   <input type="reset" id="Back" value="Reset" class="btn btn-default pull-left">
     		     </div>
     		     </div>
-    		     
+    		   <!--   data-toggle="modal" data-target="#myModal" -->
     		 <!--   <a type="submit" class="btn btn-success" style="margin:3">Save Invoice</a> -->
     		  </form:form>
     		 
