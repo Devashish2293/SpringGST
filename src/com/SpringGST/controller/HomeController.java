@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.SpringGST.Dao.CustomerDAO;
 import com.SpringGST.Dao.ItemDAO;
 import com.SpringGST.models.Address;
 import com.SpringGST.models.Customer;
@@ -31,7 +32,9 @@ public class HomeController {
   protected final Log logger = LogFactory.getLog(getClass());
   
   @Autowired
-  ItemDAO itemDAO;
+  private ItemDAO itemDAO;
+  @Autowired
+  private CustomerDAO customerDAO;
   
   @RequestMapping("/invoice")
   public ModelAndView handleRequest(HttpServletRequest request, HttpServletResponse response)
@@ -61,21 +64,23 @@ public class HomeController {
 	  msg.setReference("moksh");*/
     logger.info("Return View");
     Customer newCustomer = new Customer(new Address());
-    
+    List<Customer> customerList = customerDAO.getCustomerList();
     model.addAttribute("newCustomer",newCustomer);
     model.addAttribute("invoice" ,  invoice);
+    model.addAttribute("customerList",customerList);
+    
     
     //String message ="Create Sales Invoice";
     return "AddSalesInvoices" ;
   }
   
-  @RequestMapping(value = "/addCustomer" , method = RequestMethod.POST)
+  @RequestMapping(value = "/addinvoice/addCustomer" , method = RequestMethod.POST)
   public String addItem(@ModelAttribute("newCustomer") Customer customer){
 	 
 	  System.out.println(customer.getBusinessName());
-	
-	 
-	  return "redirect:/AddSalesInvoice";
+	  customerDAO.addCustomer(customer);
+
+	  return "redirect:/addinvoice";
   }
   
   @RequestMapping(value="/save" , method=RequestMethod.POST)
