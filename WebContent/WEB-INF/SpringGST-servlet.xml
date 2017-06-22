@@ -35,6 +35,10 @@
 	<beans:bean id="ItemDAOImpl" class="com.SpringGST.DaoImpl.ItemDAOImpl">
 		<beans:property name="jdbcTemplateObject" ref="jt" />
 	</beans:bean>
+	<beans:bean id="CustomerDAOImpl" class="com.SpringGST.DaoImpl.CustomerDAOImpl">
+		<beans:property name="jdbcTemplateObject" ref="jt" />
+	</beans:bean>
+	
 
 	<context:component-scan base-package="com.SpringGST" />
 	<tx:annotation-driven />
