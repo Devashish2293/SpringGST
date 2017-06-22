@@ -300,7 +300,7 @@
 				<h4 class="modal-title">Add New Customer</h4>
 			</div>
 			<div class="modal-body">
-		<form:form action="/addCustomer" method="post"
+		<form:form action="/SpringGST/addinvoice/addCustomer" method="post"
 					commandName="newCustomer">
 					<div class="form-group">
 						<label for="businessName">Name</label>
