@@ -9,7 +9,8 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.SpringGST.Dao.ItemDAO;
-import com.SpringGST.models.Business;
+import com.SpringGST.models.Address;
+import com.SpringGST.models.Customer;
 import com.SpringGST.models.Invoice;
 import com.SpringGST.models.Item;
 
@@ -37,9 +38,9 @@ public class HomeController {
     throws ServletException, IOException, ParseException {
     logger.info("Return View");
     List<Invoice> invoiceList = new ArrayList();
-    Business customer1 = new Business("Arias Tech.");
-    Business customer2 = new Business("Aztel Pvt. Ltd");
-    Business customer3 = new Business("Syntech Pvt. Ltd");
+    Customer customer1 = new Customer("Arias Tech.");
+    Customer customer2 = new Customer("Aztel Pvt. Ltd");
+    Customer customer3 = new Customer("Syntech Pvt. Ltd");
     Invoice invoice1 = new Invoice("MH39001",new SimpleDateFormat("dd/MM/yyyy").parse("22/5/2017") , new SimpleDateFormat("dd/MM/yyyy").parse("17/7/2017"), customer1, 455290.0);
     Invoice invoice2 = new Invoice("MH39002",new SimpleDateFormat("dd/MM/yyyy").parse("22/5/2017") , new SimpleDateFormat("dd/MM/yyyy").parse("17/7/2017"), customer2, 23466.0);
     Invoice invoice3 = new Invoice("MH39003",new SimpleDateFormat("dd/MM/yyyy").parse("22/5/2017") , new SimpleDateFormat("dd/MM/yyyy").parse("17/7/2017"), customer3, 535290.0);
@@ -52,21 +53,35 @@ public class HomeController {
   }
   
   @RequestMapping("/addinvoice")
-  public ModelAndView newSalesInvoice(HttpServletRequest request, HttpServletResponse response)
+  public String newSalesInvoice(Model model)
     throws ServletException, IOException,ParseException {
-	  Business customer1 = new Business("Arias Tech.");
+	  Customer customer1 = new Customer("Arias Tech.");
 	  Invoice invoice = new Invoice("MH39001",new SimpleDateFormat("dd/MM/yyyy").parse("22/5/2017") , new SimpleDateFormat("dd/MM/yyyy").parse("17/7/2017"), customer1, 455290.0);
 	/*  msg.setInvoiceId("qwe123");
 	  msg.setReference("moksh");*/
     logger.info("Return View");
+    Customer newCustomer = new Customer(new Address());
+    
+    model.addAttribute("newCustomer",newCustomer);
+    model.addAttribute("invoice" ,  invoice);
+    
     //String message ="Create Sales Invoice";
-    return new ModelAndView("AddSalesInvoices" , "invoice" ,  invoice);
+    return "AddSalesInvoices" ;
+  }
+  
+  @RequestMapping(value = "/addCustomer" , method = RequestMethod.POST)
+  public String addItem(@ModelAttribute("newCustomer") Customer customer){
+	 
+	  System.out.println(customer.getBusinessName());
+	
+	 
+	  return "redirect:/AddSalesInvoice";
   }
   
   @RequestMapping(value="/save" , method=RequestMethod.POST)
   public String addInvoice(@ModelAttribute("invoice") Invoice invoice)
     throws ServletException, IOException,ParseException {
-	 /* Business customer1 = new Business("Arias Tech.");
+	 /* Customer customer1 = new Customer("Arias Tech.");
 	  Invoice msg = new Invoice("MH39001",new SimpleDateFormat("dd/MM/yyyy").parse("22/5/2017") , new SimpleDateFormat("dd/MM/yyyy").parse("17/7/2017"), customer1, 455290.0);*/
 	/*  msg.setInvoiceId("qwe123");
 	  msg.setReference("moksh");*/

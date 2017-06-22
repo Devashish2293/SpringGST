@@ -9,7 +9,7 @@ public class Invoice {
 	private Date invoiceDate;
 	private String reference;
 	private Date dueDate;
-	private Business customer;
+	private Customer customer;
 	private String gstIN;
 	private String placeOfSupply;
 	private String billingAddress;
@@ -19,7 +19,7 @@ public class Invoice {
 	private Double totalInvoiceValue;
 	private List<Item> itemList;
 	
-	public Invoice(String invoiceId, Date invoiceDate, Date dueDate, Business customer, Double totalInvoiceValue) {
+	public Invoice(String invoiceId, Date invoiceDate, Date dueDate, Customer customer, Double totalInvoiceValue) {
 		super();
 		this.invoiceId = invoiceId;
 		this.invoiceDate = invoiceDate;
@@ -62,10 +62,10 @@ public class Invoice {
 	public void setDueDate(Date dueDate) {
 		this.dueDate = dueDate;
 	}
-	public Business getCustomer() {
+	public Customer getCustomer() {
 		return customer;
 	}
-	public void setCustomer(Business customer) {
+	public void setCustomer(Customer customer) {
 		this.customer = customer;
 	}
 	
