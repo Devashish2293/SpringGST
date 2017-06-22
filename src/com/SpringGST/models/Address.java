@@ -19,6 +19,10 @@ public class Address {
 		this.landlineNum = landlineNum;
 	}
 	
+	public Address() {
+		// TODO Auto-generated constructor stub
+	}
+
 	public String getState() {
 		return state;
 	}

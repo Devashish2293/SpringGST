@@ -2,6 +2,7 @@
 <%@include file="/WEB-INF/jsp/header.jsp" %>
 <%@taglib prefix="spring" uri="http://www.springframework.org/tags" %>
 
+
 <div class="container-wrapper">
     <div class="container">
 	<div class="page-header"  >
@@ -41,4 +42,3 @@
 </div>
 </div>
  <%@include file="/WEB-INF/jsp/footer.jsp" %>
- asdas
