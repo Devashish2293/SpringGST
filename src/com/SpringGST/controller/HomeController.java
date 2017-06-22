@@ -61,21 +61,37 @@ public class HomeController {
 	  msg.setReference("moksh");*/
     logger.info("Return View");
     Customer newCustomer = new Customer(new Address());
+    Item newItem = new Item();
     
     model.addAttribute("newCustomer",newCustomer);
     model.addAttribute("invoice" ,  invoice);
+    model.addAttribute("newItem", newItem);
     
     //String message ="Create Sales Invoice";
     return "AddSalesInvoices" ;
   }
   
   @RequestMapping(value = "/addCustomer" , method = RequestMethod.POST)
-  public String addItem(@ModelAttribute("newCustomer") Customer customer){
+  public String addCustomer(@ModelAttribute("newCustomer") Customer customer){
 	 
 	  System.out.println(customer.getBusinessName());
 	
 	 
-	  return "redirect:/AddSalesInvoice";
+	  return "redirect:/addinvoice";
+  }
+  
+  @RequestMapping(value = "/addinvoice/addItem" , method = RequestMethod.POST)
+  public String addSalesItem(@ModelAttribute("newItem") Item item ,Model model){
+	 Invoice invoice=new Invoice();
+	 Customer newCustomer = new Customer();
+	  System.out.println(item.getItemDescription());
+	  itemDAO.addItem(item);
+	model.addAttribute("newCustomer",newCustomer);
+		model.addAttribute("invoice" ,  invoice);
+	  model.addAttribute("newItem", item);
+	 
+	  //return "AddSalesInvoices" ;
+	  return "redirect:/addinvoice";
   }
   
   @RequestMapping(value="/save" , method=RequestMethod.POST)

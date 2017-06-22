@@ -144,14 +144,19 @@
 												Select Item<span class="caret"></span><span class="sr-only"></span>
 											</button>
 											<ul class="dropdown-menu">
-												<li><a href="<c:url value="/items" />">ADD NEW
-														ITEM</a></li>
+											<li><a class="btn btn-default" data-toggle="modal" data-target="#itemModal">Add New Item</a></li>
 											</ul>
-										</div></td>
+											</div></td>
+										<!-- 	<a class="btn btn-success" data-toggle="modal" data-target="#itemModal">Add New Item</a> -->
+								<%-- <a href="<c:url value="#itemModal" />">ADD NEWITEM</a> --%>
+											
+
+											
+										
 									<td><form:input type="hidden" id="itemtype" path=""></form:input></td>
 									<td><form:input type="hidden" id="HSN" path=""></form:input></td>
 									<td><form:input type="text" id="Qty" style=" width: 50px;"
-											path="gstIN"></form:input></td>
+											path=""></form:input></td>
 									<td><form:input type="text" id="Rate/Item"
 											style="width: 50px;" path=""></form:input></td>
 									<td><form:input type="text" id="Discount"
@@ -197,6 +202,92 @@
 
 	</div>
 
+</div>
+
+
+<div id="itemModal" class="modal fade" role="dialog">
+  <div class="modal-dialog">
+
+    <!-- Modal content-->
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <h4 class="modal-title">Add New Item</h4>
+      </div>
+      <div class="modal-body">
+  		<form:form action="addinvoice/addItem"
+			method="post" commandName="newItem" >
+			<div class="form-group">
+				<label for="description">Item Description</label>
+				<form:errors path="itemDescription" cssStyle="color: #ff0000;" />
+				<form:input path="itemDescription" id="description" class="form-control" />
+
+			</div>
+			<div class="form-group">
+				<label for="Item Type">Item Type</label>
+				<form:errors path="itemType" cssStyle="color: #ff0000;" />
+				<form:input path="itemType" id="itemtype" class="form-control" />
+
+			</div>
+				<div class="form-group">
+				<label for="HSN">HSN/SAC Code</label>
+				<form:errors path="HSN" cssStyle="color: #ff0000;" />
+				<form:input path="HSN" id="HSN	" class="form-control" />
+
+			</div>
+			
+				<div class="form-group">
+				<label for="SKU">Item/SKU Code</label>
+				<form:errors path="SKU" cssStyle="color: #ff0000;" />
+				<form:input path="SKU" id="SKU	" class="form-control" />
+
+			</div>
+			
+				<div class="form-group">
+				<label for="sellingprice">Selling Price</label>
+				<form:errors path="sellingPrice" cssStyle="color: #ff0000;" />
+				<form:input path="sellingPrice" id="sellingPrice" class="form-control" />
+
+			</div>
+			<div class="form-group">
+				<label for="purchaseprice">Purchase Price</label>
+				<form:errors path="purchasePrice" cssStyle="color: #ff0000;" />
+				<form:input path="purchasePrice" id="purchasePrice" class="form-control" />
+
+			</div>
+			<div class="form-group">
+				<label for="unitofmeasurement">Unit of Measurement</label>
+				<form:errors path="unitOfMeasurement" cssStyle="color: #ff0000;" />
+				<form:input path="unitOfMeasurement" id="unitOfMeasurement" class="form-control" />
+
+			</div>
+			<div class="form-group">
+				<label for="discount">Discount</label>
+				<form:errors path="discount" cssStyle="color: #ff0000;" />
+				<form:input path="discount" id="discount" class="form-control" />
+
+			</div>
+			<div class="form-group">
+				<label for="itemNotes">Item Notes</label>
+				<form:errors path="itemNotes" cssStyle="color: #ff0000;" />
+				<form:textarea path="itemNotes" rows="5" cols="30" class="form-control"/>
+
+			</div>
+		
+			
+			
+			<br>
+			<br>
+			<input type="submit" value="Submit" class="btn btn-default">
+		
+		</form:form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+
+  </div>
 </div>
 
 <div id="myModal" class="modal fade" role="dialog">
