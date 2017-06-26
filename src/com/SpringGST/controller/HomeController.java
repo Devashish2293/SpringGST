@@ -3,6 +3,7 @@ package com.SpringGST.controller;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -65,12 +66,16 @@ public class HomeController {
     logger.info("Return View");
     Customer newCustomer = new Customer(new Address());
     List<Customer> customerList = customerDAO.getCustomerList();
+    List<Item> itemList = itemDAO.getItemList();
     Item newItem = new Item();
     
     model.addAttribute("newCustomer",newCustomer);
     model.addAttribute("invoice" ,  invoice);
     model.addAttribute("newItem", newItem);
     model.addAttribute("customerList",customerList);
+    model.addAttribute("itemList",itemList);
+
+    
     
     
     //String message ="Create Sales Invoice";
@@ -101,7 +106,7 @@ public class HomeController {
   }
   
   @RequestMapping(value="/save" , method=RequestMethod.POST)
-  public String addInvoice(@ModelAttribute("invoice") Invoice invoice)
+  public String addInvoice(@ModelAttribute("invoice") @Validated Invoice invoice)
     throws ServletException, IOException,ParseException {
 	 /* Customer customer1 = new Customer("Arias Tech.");
 	  Invoice msg = new Invoice("MH39001",new SimpleDateFormat("dd/MM/yyyy").parse("22/5/2017") , new SimpleDateFormat("dd/MM/yyyy").parse("17/7/2017"), customer1, 455290.0);*/
@@ -111,6 +116,10 @@ public class HomeController {
     //String message ="Create Sales Invoice";
 	  System.out.println("Inoice Id : " + invoice.getInvoiceId());
 	  System.out.println("gstIN(Qty):" + invoice.getGstIN());
+	  System.out.println("customer:" + invoice.getCustomer().getBusinessName());
+	  System.out.println("customer:" + invoice.getCustomer().getContactPerson());
+	  System.out.println("customer:" + invoice.getCustomer().getGstIN());
+	  System.out.println("customer:" + invoice.getCustomer().getMobileNum());
     return "redirect:/invoice";
   }
   

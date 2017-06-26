@@ -75,8 +75,11 @@
 							<tr>
 								<th>Customer Name</th>
 							</tr>
-							<td><form:input type="text" id="custName" path=""
-									style="width:392px;"></form:input></td>
+							<td><form:select path="customer">
+									<option value="NONE">Select</option>
+									<form:options items="${customerList}" itemValue="gstIN"
+										itemLabel="businessName" />
+								</form:select></td>
 							<td><a class="btn btn-success" data-toggle="modal"
 								data-target="#myModal">Add New Customer</a></td>
 						</table>
@@ -116,7 +119,7 @@
 						<div class="table-responsive overflow: visible">
 							<table class="table-condensed table-bordered">
 								<tr>
-									<th rowspan="2">Item Dscptn</th>
+									<th rowspan="2">Item Desc.</th>
 									<th rowspan="2">Item type</th>
 									<th rowspan="2">HSN</th>
 									<th rowspan="2">Qty</th>
@@ -144,15 +147,16 @@
 												Select Item<span class="caret"></span><span class="sr-only"></span>
 											</button>
 											<ul class="dropdown-menu">
-											<li><a class="btn btn-default" data-toggle="modal" data-target="#itemModal">Add New Item</a></li>
+												<li><a class="btn btn-default" data-toggle="modal"
+													data-target="#itemModal">Add New Item</a></li>
 											</ul>
-											</div></td>
-										<!-- 	<a class="btn btn-success" data-toggle="modal" data-target="#itemModal">Add New Item</a> -->
-								<%-- <a href="<c:url value="#itemModal" />">ADD NEWITEM</a> --%>
-											
+										</div></td>
+									<!-- 	<a class="btn btn-success" data-toggle="modal" data-target="#itemModal">Add New Item</a> -->
+									<%-- <a href="<c:url value="#itemModal" />">ADD NEWITEM</a> --%>
 
-											
-										
+
+
+
 									<td><form:input type="hidden" id="itemtype" path=""></form:input></td>
 									<td><form:input type="hidden" id="HSN" path=""></form:input></td>
 									<td><form:input type="text" id="Qty" style=" width: 50px;"
@@ -206,88 +210,93 @@
 
 
 <div id="itemModal" class="modal fade" role="dialog">
-  <div class="modal-dialog">
+	<div class="modal-dialog">
 
-    <!-- Modal content-->
-    <div class="modal-content">
-      <div class="modal-header">
-        <button type="button" class="close" data-dismiss="modal">&times;</button>
-        <h4 class="modal-title">Add New Item</h4>
-      </div>
-      <div class="modal-body">
-  		<form:form action="addinvoice/addItem"
-			method="post" commandName="newItem" >
-			<div class="form-group">
-				<label for="description">Item Description</label>
-				<form:errors path="itemDescription" cssStyle="color: #ff0000;" />
-				<form:input path="itemDescription" id="description" class="form-control" />
-
+		<!-- Modal content-->
+		<div class="modal-content">
+			<div class="modal-header">
+				<button type="button" class="close" data-dismiss="modal">&times;</button>
+				<h4 class="modal-title">Add New Item</h4>
 			</div>
-			<div class="form-group">
-				<label for="Item Type">Item Type</label>
-				<form:errors path="itemType" cssStyle="color: #ff0000;" />
-				<form:input path="itemType" id="itemtype" class="form-control" />
+			<div class="modal-body">
+				<form:form action="addinvoice/addItem" method="post"
+					commandName="newItem">
+					<div class="form-group">
+						<label for="description">Item Description</label>
+						<form:errors path="itemDescription" cssStyle="color: #ff0000;" />
+						<form:input path="itemDescription" id="description"
+							class="form-control" />
 
+					</div>
+					<div class="form-group">
+						<label for="Item Type">Item Type</label>
+						<form:errors path="itemType" cssStyle="color: #ff0000;" />
+						<form:input path="itemType" id="itemtype" class="form-control" />
+
+					</div>
+					<div class="form-group">
+						<label for="HSN">HSN/SAC Code</label>
+						<form:errors path="HSN" cssStyle="color: #ff0000;" />
+						<form:input path="HSN" id="HSN	" class="form-control" />
+
+					</div>
+
+					<div class="form-group">
+						<label for="SKU">Item/SKU Code</label>
+						<form:errors path="SKU" cssStyle="color: #ff0000;" />
+						<form:input path="SKU" id="SKU	" class="form-control" />
+
+					</div>
+
+					<div class="form-group">
+						<label for="sellingprice">Selling Price</label>
+						<form:errors path="sellingPrice" cssStyle="color: #ff0000;" />
+						<form:input path="sellingPrice" id="sellingPrice"
+							class="form-control" />
+
+					</div>
+					<div class="form-group">
+						<label for="purchaseprice">Purchase Price</label>
+						<form:errors path="purchasePrice" cssStyle="color: #ff0000;" />
+						<form:input path="purchasePrice" id="purchasePrice"
+							class="form-control" />
+
+					</div>
+					<div class="form-group">
+						<label for="unitofmeasurement">Unit of Measurement</label>
+						<form:errors path="unitOfMeasurement" cssStyle="color: #ff0000;" />
+						<form:input path="unitOfMeasurement" id="unitOfMeasurement"
+							class="form-control" />
+
+					</div>
+					<div class="form-group">
+						<label for="discount">Discount</label>
+						<form:errors path="discount" cssStyle="color: #ff0000;" />
+						<form:input path="discount" id="discount" class="form-control" />
+
+					</div>
+					<div class="form-group">
+						<label for="itemNotes">Item Notes</label>
+						<form:errors path="itemNotes" cssStyle="color: #ff0000;" />
+						<form:textarea path="itemNotes" rows="5" cols="30"
+							class="form-control" />
+
+					</div>
+
+
+
+					<br>
+					<br>
+					<input type="submit" value="Submit" class="btn btn-default">
+
+				</form:form>
 			</div>
-				<div class="form-group">
-				<label for="HSN">HSN/SAC Code</label>
-				<form:errors path="HSN" cssStyle="color: #ff0000;" />
-				<form:input path="HSN" id="HSN	" class="form-control" />
-
+			<div class="modal-footer">
+				<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
 			</div>
-			
-				<div class="form-group">
-				<label for="SKU">Item/SKU Code</label>
-				<form:errors path="SKU" cssStyle="color: #ff0000;" />
-				<form:input path="SKU" id="SKU	" class="form-control" />
+		</div>
 
-			</div>
-			
-				<div class="form-group">
-				<label for="sellingprice">Selling Price</label>
-				<form:errors path="sellingPrice" cssStyle="color: #ff0000;" />
-				<form:input path="sellingPrice" id="sellingPrice" class="form-control" />
-
-			</div>
-			<div class="form-group">
-				<label for="purchaseprice">Purchase Price</label>
-				<form:errors path="purchasePrice" cssStyle="color: #ff0000;" />
-				<form:input path="purchasePrice" id="purchasePrice" class="form-control" />
-
-			</div>
-			<div class="form-group">
-				<label for="unitofmeasurement">Unit of Measurement</label>
-				<form:errors path="unitOfMeasurement" cssStyle="color: #ff0000;" />
-				<form:input path="unitOfMeasurement" id="unitOfMeasurement" class="form-control" />
-
-			</div>
-			<div class="form-group">
-				<label for="discount">Discount</label>
-				<form:errors path="discount" cssStyle="color: #ff0000;" />
-				<form:input path="discount" id="discount" class="form-control" />
-
-			</div>
-			<div class="form-group">
-				<label for="itemNotes">Item Notes</label>
-				<form:errors path="itemNotes" cssStyle="color: #ff0000;" />
-				<form:textarea path="itemNotes" rows="5" cols="30" class="form-control"/>
-
-			</div>
-		
-			
-			
-			<br>
-			<br>
-			<input type="submit" value="Submit" class="btn btn-default">
-		
-		</form:form>
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-      </div>
-    </div>
-
-  </div>
+	</div>
 </div>
 
 <div id="myModal" class="modal fade" role="dialog">
@@ -300,7 +309,7 @@
 				<h4 class="modal-title">Add New Customer</h4>
 			</div>
 			<div class="modal-body">
-		<form:form action="/SpringGST/addinvoice/addCustomer" method="post"
+				<form:form action="/SpringGST/addinvoice/addCustomer" method="post"
 					commandName="newCustomer">
 					<div class="form-group">
 						<label for="businessName">Name</label>
@@ -322,66 +331,73 @@
 						<form:input path="gstIN" id="gstIN" class="form-control" />
 
 					</div>
-			
-			<div class="form-group">
-				<label for="mobileNum">Mobile Num.</label>
-				<form:errors path="mobileNum" cssStyle="color: #ff0000;" />
-				<form:input path="mobileNum" id="mobileNum" class="form-control" />
 
+					<div class="form-group">
+						<label for="mobileNum">Mobile Num.</label>
+						<form:errors path="mobileNum" cssStyle="color: #ff0000;" />
+						<form:input path="mobileNum" id="mobileNum" class="form-control" />
+
+					</div>
+					<div class="form-group">
+						<label for="address.state">State</label>
+						<form:errors path="address.state" cssStyle="color: #ff0000;" />
+						<form:input path="address.state" id="address.state"
+							class="form-control" />
+
+
+					</div>
+					<div class="form-group">
+						<label for="address.address">Address</label>
+						<form:errors path="address.address" cssStyle="color: #ff0000;" />
+						<form:input path="address.address" id="address.address"
+							class="form-control" />
+
+					</div>
+
+					<div class="form-group">
+						<label for="address.pincode">Pincode</label>
+						<form:errors path="address.pincode" cssStyle="color: #ff0000;" />
+						<form:input path="address.pincode" id="address.pincode"
+							class="form-control" />
+
+					</div>
+
+					<div class="form-group">
+						<label for="address.city">City</label>
+						<form:errors path="address.city" cssStyle="color: #ff0000;" />
+						<form:input path="address.city" id="address.city"
+							class="form-control" />
+
+					</div>
+
+					<div class="form-group">
+						<label for="address.emailId">Email-ID</label>
+						<form:errors path="address.emailId" cssStyle="color: #ff0000;" />
+						<form:input path="address.emailId" id="address.emailId"
+							class="form-control" />
+
+					</div>
+
+					<div class="form-group">
+						<label for="address.landlineNum">LandLine Num.</label>
+						<form:errors path="address.landlineNum" cssStyle="color: #ff0000;" />
+						<form:input path="address.landlineNum" id="address.landlineNum"
+							class="form-control" />
+
+					</div>
+
+
+
+
+
+					<br>
+					<br>
+					<input type="submit" value="Submit" class="btn btn-default">
+
+				</form:form>
 			</div>
-				<div class="form-group">
-				<label for="address.state">State</label>
-				<form:errors path="address.state" cssStyle="color: #ff0000;" />
-				<form:input path="address.state" id="address.state" class="form-control" />
-
-			
-			</div>
-				<div class="form-group">
-				<label for="address.address">Address</label>
-				<form:errors path="address.address" cssStyle="color: #ff0000;" />
-				<form:input path="address.address" id="address.address" class="form-control" />
-
-			</div>
-		
-				<div class="form-group">
-				<label for="address.pincode">Pincode</label>
-				<form:errors path="address.pincode" cssStyle="color: #ff0000;" />
-				<form:input path="address.pincode" id="address.pincode" class="form-control" />
-
-			</div>
-			
-				<div class="form-group">
-				<label for="address.city">City</label>
-				<form:errors path="address.city" cssStyle="color: #ff0000;" />
-				<form:input path="address.city" id="address.city" class="form-control" />
-
-			</div>
-			
-				<div class="form-group">
-				<label for="address.emailId">Email-ID</label>
-				<form:errors path="address.emailId" cssStyle="color: #ff0000;" />
-				<form:input path="address.emailId" id="address.emailId" class="form-control" />
-
-			</div>
-						
-				<div class="form-group">
-				<label for="address.landlineNum">LandLine Num.</label>
-				<form:errors path="address.landlineNum" cssStyle="color: #ff0000;" />
-				<form:input path="address.landlineNum" id="address.landlineNum" class="form-control" />
-
-			</div>
-			
-			
-
-
-
-			<br> <br> <input type="submit" value="Submit"
-				class="btn btn-default">
-
-			</form:form>
 		</div>
 	</div>
-</div>
 </div>
 
 

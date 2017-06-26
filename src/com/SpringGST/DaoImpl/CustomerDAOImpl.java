@@ -31,6 +31,13 @@ private JdbcTemplate jdbcTemplateObject;
 	}
 
 	@Override
+	public Customer getCustomerFromGSTIN(String GSTIN) {
+		// TODO Auto-generated method stub
+		String SQL = "select * from Customers where GSTIN = ?";
+		Customer customer = this.jdbcTemplateObject.queryForObject(SQL, new Object[]{GSTIN},new CustomerMapper());
+		return customer;
+	}
+	@Override
 	public List<Customer> getCustomerList() {
 		// TODO Auto-generated method stub
 		String SQL = "select * from Customers";

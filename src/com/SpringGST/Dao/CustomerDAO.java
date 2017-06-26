@@ -9,5 +9,6 @@ public interface CustomerDAO {
 	
 	public void addCustomer(Customer customer);
 	public List<Customer> getCustomerList();
+	public Customer getCustomerFromGSTIN(String GSTIN);
 
 }
