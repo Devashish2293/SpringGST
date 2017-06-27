@@ -25,11 +25,11 @@ public class ItemDAOImpl implements ItemDAO{
 	
 	@Override
 	public void addItem(Item item) {
-		 String SQL = "insert into Items (ItemDescription, ItemType,HSN,SKU,SellingPrice,PurchasePrice,Discount,ItemNotes) values (?, ?,?, ?,?, ?,?, ?)";
+		 String SQL = "insert into Item (item_id, description, item_type,hsn_sac,sku,sell_price,purchase_price,discount,item_notes) values (?, ?,?, ?,?, ?,?, ?, ?)";
 	      if(jdbcTemplateObject == null)
 	    	  System.out.println("object is null");
 	    	  else
-	    	jdbcTemplateObject.update( SQL, item.getItemDescription(), item.getItemType().toString(),item.getHSN(),item.getSKU(),item.getSellingPrice(),item.getPurchasePrice(),item.getDiscount(),item.getItemNotes());
+	    	jdbcTemplateObject.update( SQL,item.getItemId(), item.getItemDescription(), item.getItemType(), item.getHSN(),item.getSKU(),item.getSellingPrice(),item.getPurchasePrice(),item.getDiscount(),item.getItemNotes());
 	  //    System.out.println("Created Record Name = " + name + " Age = " + age);
 	        return;
 	      
