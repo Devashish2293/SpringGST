@@ -17,11 +17,13 @@ public class Invoice {
 	private String placeOfSupply;
 	private Double grandTotal;
 
-	public Invoice(String invoiceId, Date invoiceDate, Date dueDate) {
+	public Invoice(String invoiceId, Date invoiceDate, Date dueDate ,String clientId , Double grandtotal ) {
 		super();
 		this.invoiceId = invoiceId;
 		this.invoiceDate = invoiceDate;
 		this.dueDate = dueDate;
+		this.clientId = clientId;
+		this.grandTotal = grandtotal;
 	}
 
 	public Invoice() {

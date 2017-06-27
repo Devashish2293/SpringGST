@@ -35,7 +35,7 @@ public class HomeController {
   @Autowired
   private ItemDAO itemDAO;
   @Autowired
-  private ClientDAO customerDAO;
+  private ClientDAO clientDAO;
   
   @RequestMapping("/invoice")
   public ModelAndView handleRequest(HttpServletRequest request, HttpServletResponse response)
@@ -45,10 +45,10 @@ public class HomeController {
     Client client1 = new Client("Arias Tech.");
     Client client2 = new Client("Aztel Pvt. Ltd");
     Client client3 = new Client("Syntech Pvt. Ltd");
-    Invoice invoice1 = new Invoice("MH39001",new SimpleDateFormat("dd/MM/yyyy").parse("22/5/2017") , new SimpleDateFormat("dd/MM/yyyy").parse("17/7/2017"), customer1, 455290.0);
-    Invoice invoice2 = new Invoice("MH39002",new SimpleDateFormat("dd/MM/yyyy").parse("22/5/2017") , new SimpleDateFormat("dd/MM/yyyy").parse("17/7/2017"), customer2, 23466.0);
-    Invoice invoice3 = new Invoice("MH39003",new SimpleDateFormat("dd/MM/yyyy").parse("22/5/2017") , new SimpleDateFormat("dd/MM/yyyy").parse("17/7/2017"), customer3, 535290.0);
-    Invoice invoice4 = new Invoice("MH39004",new SimpleDateFormat("dd/MM/yyyy").parse("22/5/2017") , new SimpleDateFormat("dd/MM/yyyy").parse("17/7/2017"), customer2, 655290.0);
+    Invoice invoice1 = new Invoice("MH39001",new SimpleDateFormat("dd/MM/yyyy").parse("22/5/2017") , new SimpleDateFormat("dd/MM/yyyy").parse("17/7/2017"), client1.getClientId(), 455290.0);
+    Invoice invoice2 = new Invoice("MH39002",new SimpleDateFormat("dd/MM/yyyy").parse("22/5/2017") , new SimpleDateFormat("dd/MM/yyyy").parse("17/7/2017"), client2.getClientId(), 23466.0);
+    Invoice invoice3 = new Invoice("MH39003",new SimpleDateFormat("dd/MM/yyyy").parse("22/5/2017") , new SimpleDateFormat("dd/MM/yyyy").parse("17/7/2017"), client3.getClientId(), 535290.0);
+    Invoice invoice4 = new Invoice("MH39004",new SimpleDateFormat("dd/MM/yyyy").parse("22/5/2017") , new SimpleDateFormat("dd/MM/yyyy").parse("17/7/2017"), client2.getClientId(), 655290.0);
     invoiceList.add(invoice1);
     invoiceList.add(invoice2);
     invoiceList.add(invoice3);
@@ -60,7 +60,7 @@ public class HomeController {
   public String newSalesInvoice(Model model)
     throws ServletException, IOException,ParseException {
 	  Client client1 = new Client("Arias Tech.");
-	  Invoice invoice = new Invoice("MH39001",new SimpleDateFormat("dd/MM/yyyy").parse("22/5/2017") , new SimpleDateFormat("dd/MM/yyyy").parse("17/7/2017"), customer1, 455290.0);
+	  Invoice invoice = new Invoice("MH39001",new SimpleDateFormat("dd/MM/yyyy").parse("22/5/2017") , new SimpleDateFormat("dd/MM/yyyy").parse("17/7/2017"), client1.getClientId(), 455290.0);
 	/*  msg.setInvoiceId("qwe123");
 	  msg.setReference("moksh");*/
     logger.info("Return View");
@@ -69,10 +69,10 @@ public class HomeController {
     List<Item> itemList = itemDAO.getItemList();
     Item newItem = new Item();
     
-    model.addAttribute("newCustomer",newCustomer);
+    model.addAttribute("newClient",newClient);
     model.addAttribute("invoice" ,  invoice);
     model.addAttribute("newItem", newItem);
-    model.addAttribute("customerList",customerList);
+    model.addAttribute("clientList",clientList);
     model.addAttribute("itemList",itemList);
 
     
@@ -82,11 +82,11 @@ public class HomeController {
     return "AddSalesInvoices" ;
   }
   
-  @RequestMapping(value = "/addinvoice/addCustomer" , method = RequestMethod.POST)
-  public String addItem(@ModelAttribute("newCustomer") Customer customer){
+  @RequestMapping(value = "/addinvoice/addClient" , method = RequestMethod.POST)
+  public String addClient(@ModelAttribute("newClient") Client client){
 	 
-	  System.out.println(customer.getBusinessName());
-	  customerDAO.addCustomer(customer);
+	  System.out.println(client.getBusinessName());
+	  clientDAO.addClient(client);
 
 	  return "redirect:/addinvoice";
   }
@@ -94,10 +94,10 @@ public class HomeController {
   @RequestMapping(value = "/addinvoice/addItem" , method = RequestMethod.POST)
   public String addSalesItem(@ModelAttribute("newItem") Item item ,Model model){
 	 Invoice invoice=new Invoice();
-	 Customer newCustomer = new Customer();
+	 Client newclient = new Client();
 	  System.out.println(item.getItemDescription());
 	  itemDAO.addItem(item);
-	model.addAttribute("newCustomer",newCustomer);
+	model.addAttribute("newclient",newclient);
 		model.addAttribute("invoice" ,  invoice);
 	  model.addAttribute("newItem", item);
 	 
@@ -108,18 +108,13 @@ public class HomeController {
   @RequestMapping(value="/save" , method=RequestMethod.POST)
   public String addInvoice(@ModelAttribute("invoice") @Validated Invoice invoice)
     throws ServletException, IOException,ParseException {
-	 /* Customer customer1 = new Customer("Arias Tech.");
-	  Invoice msg = new Invoice("MH39001",new SimpleDateFormat("dd/MM/yyyy").parse("22/5/2017") , new SimpleDateFormat("dd/MM/yyyy").parse("17/7/2017"), customer1, 455290.0);*/
+	 /* client client1 = new client("Arias Tech.");
+	  Invoice msg = new Invoice("MH39001",new SimpleDateFormat("dd/MM/yyyy").parse("22/5/2017") , new SimpleDateFormat("dd/MM/yyyy").parse("17/7/2017"), client1, 455290.0);*/
 	/*  msg.setInvoiceId("qwe123");
 	  msg.setReference("moksh");*/
    /* logger.info("Return View");*/
     //String message ="Create Sales Invoice";
-	  System.out.println("Inoice Id : " + invoice.getInvoiceId());
-	  System.out.println("gstIN(Qty):" + invoice.getGstIN());
-	  System.out.println("customer:" + invoice.getCustomer().getBusinessName());
-	  System.out.println("customer:" + invoice.getCustomer().getContactPerson());
-	  System.out.println("customer:" + invoice.getCustomer().getGstIN());
-	  System.out.println("customer:" + invoice.getCustomer().getMobileNum());
+
     return "redirect:/invoice";
   }
   

@@ -15,6 +15,9 @@ public class Client {
 		// TODO Auto-generated constructor stub
 		this.businessName = businessName;
 	}
+	public Client() {
+		// TODO Auto-generated constructor stub
+	}
 	public String getClientId() {
 		return clientId;
 	}

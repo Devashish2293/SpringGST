@@ -15,18 +15,18 @@ import com.SpringGST.models.Client;
 public class ClientFormatter implements Formatter<Client>{
 
 	@Autowired
-	private ClientDAO customerDAO;
+	private ClientDAO clientDAO;
 	@Override
-	public String print(Client customer, Locale arg1) {
+	public String print(Client client, Locale arg1) {
 		// TODO Auto-generated method stub
-		return customer.getBusinessName();
+		return client.getBusinessName();
 	}
 
 	@Override
 	public Client parse(String clientId, Locale arg1) throws ParseException {
 		// TODO Auto-generated method stub
 		
-		return customerDAO.getClientFromId(clientId);
+		return clientDAO.getClientFromId(clientId);
 	}
 
 }
