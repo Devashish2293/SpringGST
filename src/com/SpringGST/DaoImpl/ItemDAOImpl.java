@@ -25,7 +25,7 @@ public class ItemDAOImpl implements ItemDAO{
 	
 	@Override
 	public void addItem(Item item) {
-	     String SQL = "insert into Item (item_id, description, item_type,hsn_sac,sku,sell_price,purchase_price,discount,item_notes) values (?, ?,?, ?,?, ?,?, ?, ?)"; 
+	     String SQL = "insert into item (item_id, description, item_type,hsn_sac,sku,sell_price,purchase_price,discount,item_notes) values (?, ?,?, ?,?, ?,?, ?, ?)"; 
 	      if(jdbcTemplateObject == null)
 	    	  System.out.println("object is null");
 	    	  else
@@ -43,7 +43,7 @@ public class ItemDAOImpl implements ItemDAO{
 	}
 	@Override
 	public List<Item> getItemList(){
-		 String SQL = "select * from Items";
+		 String SQL = "select * from item";
 	      List <Item> itemList = jdbcTemplateObject.query(SQL, new ItemMapper());
 	      return itemList;
 	}
