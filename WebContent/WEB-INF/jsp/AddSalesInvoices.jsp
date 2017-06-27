@@ -75,13 +75,13 @@
 							<tr>
 								<th>Customer Name</th>
 							</tr>
-							<td><form:select path="customer">
+							<td><form:select path="clientId">
 									<option value="NONE">Select</option>
-									<form:options items="${customerList}" itemValue="gstIN"
+									<form:options items="${clientList}" itemValue="clientId"
 										itemLabel="businessName" />
 								</form:select></td>
 							<td><a class="btn btn-success" data-toggle="modal"
-								data-target="#myModal">Add New Customer</a></td>
+								data-target="#myModal">Add New Client</a></td>
 						</table>
 					</div>
 					<div class="col-md-5 col-md-offset-2">

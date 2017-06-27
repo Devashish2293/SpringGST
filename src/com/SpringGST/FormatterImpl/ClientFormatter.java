@@ -7,25 +7,26 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.format.Formatter;
 import org.springframework.stereotype.Component;
 
-import com.SpringGST.Dao.CustomerDAO;
-import com.SpringGST.models.Customer;
+import com.SpringGST.Dao.ClientDAO;
+import com.SpringGST.models.Client;
+
 
 @Component
-public class CustomerFormatter implements Formatter<Customer>{
+public class ClientFormatter implements Formatter<Client>{
 
 	@Autowired
-	private CustomerDAO customerDAO;
+	private ClientDAO customerDAO;
 	@Override
-	public String print(Customer customer, Locale arg1) {
+	public String print(Client customer, Locale arg1) {
 		// TODO Auto-generated method stub
 		return customer.getBusinessName();
 	}
 
 	@Override
-	public Customer parse(String GSTIN, Locale arg1) throws ParseException {
+	public Client parse(String clientId, Locale arg1) throws ParseException {
 		// TODO Auto-generated method stub
 		
-		return customerDAO.getCustomerFromGSTIN(GSTIN);
+		return customerDAO.getClientFromId(clientId);
 	}
 
 }

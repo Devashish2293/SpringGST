@@ -43,7 +43,7 @@
 		class="org.springframework.format.support.FormattingConversionServiceFactoryBean">
 		<beans:property name="formatters">
 			<beans:set>
-				<beans:ref bean="customerFormatter" />
+				<beans:ref bean="clientFormatter" />
 			</beans:set>
 		</beans:property>
 	</beans:bean>
