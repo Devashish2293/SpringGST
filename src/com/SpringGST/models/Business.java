@@ -1,40 +1,26 @@
 package com.SpringGST.models;
 
-public class Business extends AbstractCustomer {
-	
-	private String businessName;
-	private String contactPerson;
-	private String gstIN;
+public class Business {
 
-	public Business(String businessName) {
-		this.businessName = businessName;
+	private String businessId;
+	private String portalUserId;
+	private String businessGSTIN;
+	public String getBusinessId() {
+		return businessId;
 	}
-
-	public Business(String customerId, Long mobileNum, Address address, String businessName, String contactPerson,
-			String gstIN) {
-		super(customerId, mobileNum, address);
-		this.businessName = businessName;
-		this.contactPerson = contactPerson;
-		this.gstIN = gstIN;
+	public void setBusinessId(String businessId) {
+		this.businessId = businessId;
 	}
-	
-	public String getBusinessName() {
-		return businessName;
+	public String getPortalUserId() {
+		return portalUserId;
 	}
-	public void setBusinessName(String businessName) {
-		this.businessName = businessName;
+	public void setPortalUserId(String portalUserId) {
+		this.portalUserId = portalUserId;
 	}
-	public String getContactPerson() {
-		return contactPerson;
+	public String getBusinessGSTIN() {
+		return businessGSTIN;
 	}
-	public void setContactPerson(String contactPerson) {
-		this.contactPerson = contactPerson;
+	public void setBusinessGSTIN(String businessGSTIN) {
+		this.businessGSTIN = businessGSTIN;
 	}
-	public String getGstIN() {
-		return gstIN;
-	}
-	public void setGstIN(String gstIN) {
-		this.gstIN = gstIN;
-	}
-
 }
