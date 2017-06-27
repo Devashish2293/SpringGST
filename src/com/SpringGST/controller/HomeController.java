@@ -3,15 +3,16 @@ package com.SpringGST.controller;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
-import com.SpringGST.Dao.CustomerDAO;
+import com.SpringGST.Dao.ClientDAO;
 import com.SpringGST.Dao.ItemDAO;
 import com.SpringGST.models.Address;
-import com.SpringGST.models.Customer;
+import com.SpringGST.models.Client;
 import com.SpringGST.models.Invoice;
 import com.SpringGST.models.Item;
 
@@ -34,16 +35,16 @@ public class HomeController {
   @Autowired
   private ItemDAO itemDAO;
   @Autowired
-  private CustomerDAO customerDAO;
+  private ClientDAO customerDAO;
   
   @RequestMapping("/invoice")
   public ModelAndView handleRequest(HttpServletRequest request, HttpServletResponse response)
     throws ServletException, IOException, ParseException {
     logger.info("Return View");
     List<Invoice> invoiceList = new ArrayList();
-    Customer customer1 = new Customer("Arias Tech.");
-    Customer customer2 = new Customer("Aztel Pvt. Ltd");
-    Customer customer3 = new Customer("Syntech Pvt. Ltd");
+    Client client1 = new Client("Arias Tech.");
+    Client client2 = new Client("Aztel Pvt. Ltd");
+    Client client3 = new Client("Syntech Pvt. Ltd");
     Invoice invoice1 = new Invoice("MH39001",new SimpleDateFormat("dd/MM/yyyy").parse("22/5/2017") , new SimpleDateFormat("dd/MM/yyyy").parse("17/7/2017"), customer1, 455290.0);
     Invoice invoice2 = new Invoice("MH39002",new SimpleDateFormat("dd/MM/yyyy").parse("22/5/2017") , new SimpleDateFormat("dd/MM/yyyy").parse("17/7/2017"), customer2, 23466.0);
     Invoice invoice3 = new Invoice("MH39003",new SimpleDateFormat("dd/MM/yyyy").parse("22/5/2017") , new SimpleDateFormat("dd/MM/yyyy").parse("17/7/2017"), customer3, 535290.0);
@@ -58,19 +59,23 @@ public class HomeController {
   @RequestMapping("/addinvoice")
   public String newSalesInvoice(Model model)
     throws ServletException, IOException,ParseException {
-	  Customer customer1 = new Customer("Arias Tech.");
+	  Client client1 = new Client("Arias Tech.");
 	  Invoice invoice = new Invoice("MH39001",new SimpleDateFormat("dd/MM/yyyy").parse("22/5/2017") , new SimpleDateFormat("dd/MM/yyyy").parse("17/7/2017"), customer1, 455290.0);
 	/*  msg.setInvoiceId("qwe123");
 	  msg.setReference("moksh");*/
     logger.info("Return View");
-    Customer newCustomer = new Customer(new Address());
-    List<Customer> customerList = customerDAO.getCustomerList();
+    Client newClient = new Client();
+    List<Client> clientList = clientDAO.getClientList();
+    List<Item> itemList = itemDAO.getItemList();
     Item newItem = new Item();
     
     model.addAttribute("newCustomer",newCustomer);
     model.addAttribute("invoice" ,  invoice);
     model.addAttribute("newItem", newItem);
     model.addAttribute("customerList",customerList);
+    model.addAttribute("itemList",itemList);
+
+    
     
     
     //String message ="Create Sales Invoice";
@@ -101,7 +106,7 @@ public class HomeController {
   }
   
   @RequestMapping(value="/save" , method=RequestMethod.POST)
-  public String addInvoice(@ModelAttribute("invoice") Invoice invoice)
+  public String addInvoice(@ModelAttribute("invoice") @Validated Invoice invoice)
     throws ServletException, IOException,ParseException {
 	 /* Customer customer1 = new Customer("Arias Tech.");
 	  Invoice msg = new Invoice("MH39001",new SimpleDateFormat("dd/MM/yyyy").parse("22/5/2017") , new SimpleDateFormat("dd/MM/yyyy").parse("17/7/2017"), customer1, 455290.0);*/
@@ -111,6 +116,10 @@ public class HomeController {
     //String message ="Create Sales Invoice";
 	  System.out.println("Inoice Id : " + invoice.getInvoiceId());
 	  System.out.println("gstIN(Qty):" + invoice.getGstIN());
+	  System.out.println("customer:" + invoice.getCustomer().getBusinessName());
+	  System.out.println("customer:" + invoice.getCustomer().getContactPerson());
+	  System.out.println("customer:" + invoice.getCustomer().getGstIN());
+	  System.out.println("customer:" + invoice.getCustomer().getMobileNum());
     return "redirect:/invoice";
   }
   
