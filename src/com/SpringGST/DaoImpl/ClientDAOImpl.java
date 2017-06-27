@@ -33,7 +33,7 @@ private JdbcTemplate jdbcTemplateObject;
 	@Override
 	public Client getClientFromId(String clientId) {
 		// TODO Auto-generated method stub
-		String SQL = "select * from Customers where client_id = ?";
+		String SQL = "select * from client where client_id = ?";
 		Client client = this.jdbcTemplateObject.queryForObject(SQL, new Object[]{clientId},new ClientMapper());
 		return client;
 	}

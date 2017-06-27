@@ -29,10 +29,10 @@
 					<tr>
 						
 						<td>${invoice.invoiceId}</td>
-						<td>${invoice.customer.businessName}</td>
+						<td>${invoice.clientId}</td>
 						<td>${invoice.invoiceDate}</td>
 						<td>${invoice.dueDate}USD</td>
-						<td>${invoice.totalInvoiceValue}USD</td>
+						<td>${invoice.grandTotal}USD</td>
 						<td><a href="<spring:url value="/invoice/viewInvoice/${invoice.invoiceId}"/>"><span class="glyphicon glyphicon-info-sign"></span></a></td>
 					</tr>
 				</c:forEach>
