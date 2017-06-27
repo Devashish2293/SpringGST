@@ -11,6 +11,11 @@ public class Client {
 	private String individualName;
 	private String businessContactPerson;
 	private Long mobileNum;
+	
+	
+	public Client() {
+		super();
+	}
 	public Client(String businessName) {
 		// TODO Auto-generated constructor stub
 		this.businessName = businessName;

@@ -6,7 +6,7 @@ public class Item {
 	private String itemId;
 	private String itemDescription;
 	private String SKU;
-	private ItemType itemType;
+	private String itemType;
 	private String HSN;
 	private Double sellingPrice;
 	private Double purchasePrice;
@@ -31,10 +31,11 @@ public class Item {
 	public void setSKU(String sKU) {
 		SKU = sKU;
 	}
-	public ItemType getItemType() {
+	
+	public String getItemType() {
 		return itemType;
 	}
-	public void setItemType(ItemType itemType) {
+	public void setItemType(String itemType) {
 		this.itemType = itemType;
 	}
 	public String getHSN() {
