@@ -1,6 +1,7 @@
 package com.SpringGST.DaoImpl;
 
 import java.util.List;
+import java.util.UUID;
 
 import org.springframework.jdbc.core.JdbcTemplate;
 
@@ -20,6 +21,8 @@ private JdbcTemplate jdbcTemplateObject;
 	@Override
 	public void addClient(Client client) {
 		// TODO Auto-generated method stub
+		 String clientID = UUID.randomUUID().toString(); 
+		    client.setClientId(clientID); 
 		 String SQL = "insert into client (client_id, client_gstin,business_name,bill_address,ship_address,is_business,individual_name,business_contact_person,mobile) values (?, ?,?, ?,?, ?,?, ?,?)";
 	      if(jdbcTemplateObject == null)
 	    	  System.out.println("object is null");
