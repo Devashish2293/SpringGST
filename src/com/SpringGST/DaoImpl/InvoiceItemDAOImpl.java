@@ -29,7 +29,7 @@ public class InvoiceItemDAOImpl implements InvoiceItemDAO {
 	      if(jdbcTemplateObject == null)
 	    	  System.out.println("object is null");
 	    	  else
-	    	jdbcTemplateObject.update( invoiceItem.getInvoiceItemId() , invoiceItem.getItemId() , invoiceItem.getInvoiceId() , invoiceItem.getQuantity() , 
+	    	jdbcTemplateObject.update( SQL ,invoiceItem.getInvoiceItemId() , invoiceItem.getItemId() , invoiceItem.getInvoiceId() , invoiceItem.getQuantity() , 
 	    			invoiceItem.getTotalAmount() , invoiceItem.getCgstPercentage() , invoiceItem.getCgstAmount() , invoiceItem.getSgstPercentage() 
 	    			, invoiceItem.getSgstAmount(), invoiceItem.getIgstPercentage() , invoiceItem.getIgstAmount() , invoiceItem.getCessPercentage() , invoiceItem.getCessAmount() );
 		

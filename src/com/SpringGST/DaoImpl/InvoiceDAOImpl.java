@@ -1,6 +1,7 @@
 package com.SpringGST.DaoImpl;
 
 import java.util.List;
+import java.util.UUID;
 
 import org.springframework.jdbc.core.JdbcTemplate;
 
@@ -19,15 +20,18 @@ public class InvoiceDAOImpl implements InvoiceDAO {
 	}
 
 	@Override
-	public void addInvoice(Invoice invoice) {
+	public String addInvoice(Invoice invoice) {
 		// TODO Auto-generated method stub
-		 String SQL = "insert into invoice (invoice_id, business_id,client_id,invoice_item_id,invoice_date,due_date,place_of_supply,nature_of_invoice,invoice_type,gstr1_filing_status,grand_total) values (?, ?,?, ?,?, ?,?, ?,? ,?,?)";
+		String invoiceID = UUID.randomUUID().toString();       
+		invoice.setInvoiceId(invoiceID);
+		 String SQL = "insert into invoice (invoice_id, business_id,client_id,invoice_date,due_date,place_of_supply,nature_of_invoice,invoice_type,gstr1_filing_status,grand_total) values (?, ?,?, ?,?, ?,?, ?,? ,?)";
 	      if(jdbcTemplateObject == null)
 	    	  System.out.println("object is null");
 	    	  else
-	    	jdbcTemplateObject.update( SQL, invoice.getInvoiceId() , invoice.getBusinessId() , invoice.getClientId() , invoice.getInvoiceItemId() , invoice.getInvoiceDate() , invoice.getDueDate() , invoice.getPlaceOfSupply(), invoice.getNatureOfInvoice(), invoice.getInvoiceType(),invoice.getGstr1FilingStatus(),invoice.getGrandTotal());
+	    	jdbcTemplateObject.update( SQL, invoice.getInvoiceId() , invoice.getBusinessId() ,invoice.getClientId(), invoice.getInvoiceDate() , invoice.getDueDate() , invoice.getPlaceOfSupply(), invoice.getNatureOfInvoice(), invoice.getInvoiceType(),invoice.getGstr1FilingStatus(),invoice.getGrandTotal());
 	  //    System.out.println("Created Record Name = " + name + " Age = " + age);
-	       
+	      
+	       return invoiceID;
 	}
 
 	@Override

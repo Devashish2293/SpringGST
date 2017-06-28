@@ -7,7 +7,7 @@ import com.SpringGST.models.Invoice;
 
 public interface InvoiceDAO {
 
-	public void addInvoice(Invoice invoice);
+	public String addInvoice(Invoice invoice);
 	public List<Invoice> getInvoiceList();
 	public Invoice getInvoiceFromId(String id);
 }
