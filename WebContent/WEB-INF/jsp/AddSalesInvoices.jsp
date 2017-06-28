@@ -76,8 +76,7 @@
 								<th>Customer Name</th>
 							</tr>
 							<td><form:select path="client.clientId">
-									<option value="NONE">Select</option>
-									
+									<option >Select</option>
 									<form:options items="${clientList}" itemValue="clientId"
 										itemLabel="businessName" />
 								</form:select></td>
@@ -141,7 +140,7 @@
 									<td>Amt</td>
 								</tr>
 								<tr>
-									<td><form:select path="item.itemId">
+									<td><form:select path="invoiceItem.itemId">
 									<option value="NONE">Select</option>
 									<option class="btn btn-success" data-toggle="modal"
 								data-target="#itemModal">Add New Item</option>
@@ -169,7 +168,7 @@
 									<td><form:input type="hidden" id="itemtype" path=""></form:input></td>
 									<td><form:input type="hidden" id="HSN" path=""></form:input></td>
 									<td><form:input type="text" id="Qty" style=" width: 50px;"
-											path="item.quantity"></form:input></td>
+											path="invoiceItem.quantity"></form:input></td>
 									<td><form:input type="text" id="Rate/Item"
 											style="width: 50px;" path=""></form:input></td>
 									<td><form:input type="text" id="Discount"
@@ -177,17 +176,17 @@
 									<td><form:input type="text" id="TaxableValue"
 											style="width: 50px;" path=""></form:input></td>
 									<td><form:input type="text" id="CGST%"
-											style="width: 50px;" path="item.cgstPercentage"></form:input></td>
+											style="width: 50px;" path="invoiceItem.cgstPercentage"></form:input></td>
 									<td><form:input type="text" id="CGSTAmt"
-											style="width: 50px;" path="item.cgstAmount"></form:input></td>
+											style="width: 50px;" path="invoiceItem.cgstAmount"></form:input></td>
 									<td><form:input type="text" id="SGST%"
-											style="width: 50px;" path="item.sgstPercentage"></form:input></td>
+											style="width: 50px;" path="invoiceItem.sgstPercentage"></form:input></td>
 									<td><form:input type="text" id="SGSTAmt"
-											style="width: 50px;" path="item.sgstAmount"></form:input></td>
+											style="width: 50px;" path="invoiceItem.sgstAmount"></form:input></td>
 									<td><form:input type="text" id="IGST%"
-											style="width: 50px;" path="item.igstPercentage"></form:input></td>
+											style="width: 50px;" path="invoiceItem.igstPercentage"></form:input></td>
 									<td><form:input type="text" id="IGSTAmt"
-											style="width: 50px;" path="item.igstAmount"></form:input></td>
+											style="width: 50px;" path="invoiceItem.igstAmount"></form:input></td>
 									<td><form:input type="hidden" id="Total" path=""></form:input></td>
 								</tr>
 							</table>
