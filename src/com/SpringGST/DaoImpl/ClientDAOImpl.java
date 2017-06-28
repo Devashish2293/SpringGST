@@ -27,7 +27,7 @@ private JdbcTemplate jdbcTemplateObject;
 	      if(jdbcTemplateObject == null)
 	    	  System.out.println("object is null");
 	    	  else
-	    	jdbcTemplateObject.update( SQL, client.getClientId() ,client.getClientGSTIN(),client.getBusinessName(),client.getBillingAddress(),client.getShippingAddress(),client.getIsBusiness(),client.getIndividualName(),client.getBusinessContactPerson(),client.getMobileNum() );
+	    	jdbcTemplateObject.update( SQL, client.getClientId() ,client.getClientGSTIN(),client.getBusinessName(),client.getBillingAddress(),client.getShippingAddress(),client.getIsBusiness(),client.getBusinessName(),client.getBusinessContactPerson(),client.getMobileNum() );
 	  //    System.out.println("Created Record Name = " + name + " Age = " + age);
 	       
 		

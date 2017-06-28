@@ -9,8 +9,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.SpringGST.Dao.AddressDAO;
 import com.SpringGST.Dao.ClientDAO;
 import com.SpringGST.Dao.ItemDAO;
+import com.SpringGST.FormObjects.ClientForm;
 import com.SpringGST.models.Address;
 import com.SpringGST.models.Client;
 import com.SpringGST.models.Invoice;
@@ -36,6 +38,8 @@ public class HomeController {
   private ItemDAO itemDAO;
   @Autowired
   private ClientDAO clientDAO;
+  @Autowired
+  private AddressDAO addressDAO;
   
   @RequestMapping("/invoice")
   public ModelAndView handleRequest(HttpServletRequest request, HttpServletResponse response)
@@ -64,7 +68,7 @@ public class HomeController {
 	/*  msg.setInvoiceId("qwe123");
 	  msg.setReference("moksh");*/
     logger.info("Return View");
-    Client newClient = new Client();
+    ClientForm newClient = new ClientForm(new Client(), new Address());
     List<Client> clientList = clientDAO.getClientList();
     List<Item> itemList = itemDAO.getItemList();
     Item newItem = new Item();
@@ -83,10 +87,13 @@ public class HomeController {
   }
   
   @RequestMapping(value = "/addinvoice/addClient" , method = RequestMethod.POST)
-  public String addClient(@ModelAttribute("newClient") Client client){
-	 
-	  System.out.println(client.getBusinessName());
-	  clientDAO.addClient(client);
+  public String addClient(@ModelAttribute("newClient") ClientForm clientForm){
+	  String addressId;
+	  System.out.println(clientForm.getClient().getBusinessName());
+	  addressId = addressDAO.addAddress(clientForm.getAddress());
+	  clientForm.getClient().setBillingAddress(addressId);
+	  clientForm.getClient().setShippingAddress(addressId);
+      clientDAO.addClient(clientForm.getClient());
 
 	  return "redirect:/addinvoice";
   }
