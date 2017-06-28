@@ -17,7 +17,6 @@ public class InvoiceMapper implements RowMapper<Invoice> {
 		invoice.setInvoiceId(rs.getString("invoice_id"));
 		invoice.setBusinessId(rs.getString("business_id"));
 		invoice.setClientId(rs.getString("client_id"));
-		invoice.setInvoiceItemId(rs.getString("invoice_item_id"));
 		invoice.setInvoiceDate(rs.getDate("invoice_date"));
 		invoice.setDueDate(rs.getDate("due_date"));
 		invoice.setPlaceOfSupply(rs.getString("place_of_supply"));

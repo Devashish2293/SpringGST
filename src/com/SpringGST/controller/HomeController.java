@@ -12,6 +12,7 @@ import org.springframework.web.servlet.ModelAndView;
 import com.SpringGST.Dao.AddressDAO;
 import com.SpringGST.Dao.ClientDAO;
 import com.SpringGST.Dao.InvoiceDAO;
+import com.SpringGST.Dao.InvoiceItemDAO;
 import com.SpringGST.Dao.ItemDAO;
 import com.SpringGST.FormObjects.ClientForm;
 import com.SpringGST.FormObjects.InvoiceForm;
@@ -45,6 +46,9 @@ public class HomeController {
   private AddressDAO addressDAO;
   @Autowired
   private InvoiceDAO invoiceDAO;
+  
+  @Autowired
+  private InvoiceItemDAO invoiceItemDAO;
   
   @RequestMapping("/invoice")
   public ModelAndView handleRequest(HttpServletRequest request, HttpServletResponse response)
@@ -131,13 +135,19 @@ public class HomeController {
 	  msg.setReference("moksh");*/
    /* logger.info("Return View");*/
     //String message ="Create Sales Invoice";
-	  System.out.println(invoiceForm.getItem().getItemId());
-	  System.out.println(invoiceForm.getItem().getCgstPercentage());
-	  System.out.println(invoiceForm.getInvoice().getInvoiceId());
-	  System.out.println(invoiceForm.getInvoice().getDueDate());
-	  System.out.println(invoiceForm.getClient().getClientId());
-	  System.out.println(invoiceForm.getClient().getBusinessName());
-
+	  Invoice invoice = new Invoice();
+	  InvoiceItem invoiceItem = new InvoiceItem();
+	  Client client = clientDAO.getClientFromId(invoiceForm.getClient().getClientId());
+	  Address address = addressDAO.getAddress(client.getBillingAddress());
+	  invoice.setClientId(invoiceForm.getClient().getClientId());
+	  invoice.setPlaceOfSupply(address.getState());
+	  invoice.setInvoiceType(client.getIsBusiness()?"B2B":"B2C");
+	  String invoiceID = invoiceDAO.addInvoice(invoice);
+	  invoiceItem = invoiceForm.getInvoiceItem();
+	  invoiceItem.setInvoiceId(invoiceID);
+	  invoiceItemDAO.addInvoiceItem(invoiceItem);
+	  
+	  
     return "redirect:/invoice";
   }
   

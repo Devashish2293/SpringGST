@@ -9,39 +9,51 @@ public class InvoiceForm {
 	
 	private Invoice invoice;
 	private Client client;
-	private InvoiceItem item;
+	private InvoiceItem invoiceItem;
 	
 	
 	public InvoiceForm() {
 		super();
 	}
-	
-	public InvoiceForm(Invoice invoice, Client client, InvoiceItem item) {
-		super();
-		this.invoice = invoice;
-		this.client = client;
-		this.item = item;
-	}
+
 
 	public Invoice getInvoice() {
 		return invoice;
 	}
+
+
 	public void setInvoice(Invoice invoice) {
 		this.invoice = invoice;
 	}
+
+
 	public Client getClient() {
 		return client;
 	}
+
+
 	public void setClient(Client client) {
 		this.client = client;
 	}
 
-	public InvoiceItem getItem() {
-		return item;
+
+	public InvoiceItem getInvoiceItem() {
+		return invoiceItem;
 	}
 
-	public void setItem(InvoiceItem item) {
-		this.item = item;
+
+	public void setInvoiceItem(InvoiceItem invoiceItem) {
+		this.invoiceItem = invoiceItem;
 	}
+
+
+	public InvoiceForm(Invoice invoice, Client client, InvoiceItem invoiceItem) {
+		super();
+		this.invoice = invoice;
+		this.client = client;
+		this.invoiceItem = invoiceItem;
+	}
+	
+	
 
 }

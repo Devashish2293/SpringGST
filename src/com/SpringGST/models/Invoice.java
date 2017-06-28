@@ -8,7 +8,7 @@ public class Invoice {
 	private String invoiceId;
 	private String businessId;
 	private String clientId;
-	private String invoiceItemId;
+
 	private Date invoiceDate;
 	private String natureOfInvoice;
 	private String invoiceType;
@@ -55,13 +55,7 @@ public class Invoice {
 		this.clientId = clientId;
 	}
 
-	public String getInvoiceItemId() {
-		return invoiceItemId;
-	}
 
-	public void setInvoiceItemId(String invoiceItemId) {
-		this.invoiceItemId = invoiceItemId;
-	}
 
 	public Date getInvoiceDate() {
 		return invoiceDate;
