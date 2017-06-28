@@ -14,9 +14,11 @@ import com.SpringGST.Dao.ClientDAO;
 import com.SpringGST.Dao.InvoiceDAO;
 import com.SpringGST.Dao.ItemDAO;
 import com.SpringGST.FormObjects.ClientForm;
+import com.SpringGST.FormObjects.InvoiceForm;
 import com.SpringGST.models.Address;
 import com.SpringGST.models.Client;
 import com.SpringGST.models.Invoice;
+import com.SpringGST.models.InvoiceItem;
 import com.SpringGST.models.Item;
 
 import javax.servlet.ServletException;
@@ -67,9 +69,12 @@ public class HomeController {
   @RequestMapping("/addinvoice")
   public String newSalesInvoice(Model model)
     throws ServletException, IOException,ParseException {
+	  InvoiceForm invoiceForm = new InvoiceForm(new Invoice() , new Client() , new InvoiceItem() );
+	  
 	  Client client1 = new Client("Arias Tech.");
 	  Invoice invoice = new Invoice("MH39001",new SimpleDateFormat("dd/MM/yyyy").parse("22/5/2017") , new SimpleDateFormat("dd/MM/yyyy").parse("17/7/2017"), client1.getClientId(), 455290.0);
-	/*  msg.setInvoiceId("qwe123");
+	  
+	  /*  msg.setInvoiceId("qwe123");
 	  msg.setReference("moksh");*/
     logger.info("Return View");
     ClientForm newClient = new ClientForm(new Client(), new Address());
@@ -78,6 +83,7 @@ public class HomeController {
     Item newItem = new Item();
     
     model.addAttribute("newClient",newClient);
+    model.addAttribute("invoiceForm", invoiceForm);
     model.addAttribute("invoice" ,  invoice);
     model.addAttribute("newItem", newItem);
     model.addAttribute("clientList",clientList);
@@ -117,7 +123,7 @@ public class HomeController {
   }
   
   @RequestMapping(value="/save" , method=RequestMethod.POST)
-  public String addInvoice(@ModelAttribute("invoice") @Validated Invoice invoice)
+  public String addInvoice(@ModelAttribute("invoiceForm") @Validated InvoiceForm invoiceForm)
     throws ServletException, IOException,ParseException {
 	 /* client client1 = new client("Arias Tech.");
 	  Invoice msg = new Invoice("MH39001",new SimpleDateFormat("dd/MM/yyyy").parse("22/5/2017") , new SimpleDateFormat("dd/MM/yyyy").parse("17/7/2017"), client1, 455290.0);*/
@@ -125,6 +131,12 @@ public class HomeController {
 	  msg.setReference("moksh");*/
    /* logger.info("Return View");*/
     //String message ="Create Sales Invoice";
+	  System.out.println(invoiceForm.getItem().getItemId());
+	  System.out.println(invoiceForm.getItem().getCgstPercentage());
+	  System.out.println(invoiceForm.getInvoice().getInvoiceId());
+	  System.out.println(invoiceForm.getInvoice().getDueDate());
+	  System.out.println(invoiceForm.getClient().getClientId());
+	  System.out.println(invoiceForm.getClient().getBusinessName());
 
     return "redirect:/invoice";
   }

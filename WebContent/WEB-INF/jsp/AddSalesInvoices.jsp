@@ -7,7 +7,7 @@
 	<div class="container">
 		<h3>Create Sales Invoice</h3>
 		<form:form action="/SpringGST/save" method="post"
-			commandName="invoice">
+			commandName="invoiceForm">
 			<div class="row">
 				<!-- <div class="col-md-6">
     	
@@ -29,7 +29,7 @@
 								<tr>
 									<th>Invoice Id</th>
 								</tr>
-								<td><form:input type="text" id="invoiceId" path="invoiceId"
+								<td><form:input type="text" id="invoiceId" path="invoice.invoiceId"
 										value="${invoice.invoiceId }"></form:input></td>
 							</table>
 						</div>
@@ -38,7 +38,7 @@
 								<tr>
 									<th>Invoice Date</th>
 								</tr>
-								<td><form:input type="date" id="invoiceDate" path=""
+								<td><form:input type="date" id="invoice.invoiceDate" path=""
 										value="${invoice.invoiceDate }"></form:input></td>
 							</table>
 						</div>
@@ -51,7 +51,7 @@
 								<tr>
 									<th>Reference</th>
 								</tr>
-								<td><form:input type="text" id="invoiceId" path="invoiceId"
+								<td><form:input type="text" id="invoiceId" path="invoice.invoiceId"
 										value="${invoice.invoiceId}"></form:input></td>
 							</table>
 						</div>
@@ -60,7 +60,7 @@
 								<tr>
 									<th>Due Date</th>
 								</tr>
-								<td><form:input type="date" id="dueDate" path=""
+								<td><form:input type="date" id="invoice.dueDate" path=""
 										value="${invoice.dueDate }"></form:input></td>
 							</table>
 						</div>
@@ -75,8 +75,9 @@
 							<tr>
 								<th>Customer Name</th>
 							</tr>
-							<td><form:select path="clientId">
+							<td><form:select path="client.clientId">
 									<option value="NONE">Select</option>
+									
 									<form:options items="${clientList}" itemValue="clientId"
 										itemLabel="businessName" />
 								</form:select></td>
@@ -91,7 +92,7 @@
 									<tr>
 										<th>Billing Address <a href="/editAddress">edit</a></th>
 									</tr>
-									<td><form:input type="hidden" path="" id="billAddrs"></form:input></td>
+									<td><form:input type="hidden" path="" id="invoice.billAddrs"></form:input></td>
 								</table>
 							</div>
 							<div class="col-md-6">
@@ -140,7 +141,15 @@
 									<td>Amt</td>
 								</tr>
 								<tr>
-									<td><div class="dropdown">
+									<td><form:select path="item.itemId">
+									<option value="NONE">Select</option>
+									<option class="btn btn-success" data-toggle="modal"
+								data-target="#itemModal">Add New Item</option>
+									<form:options items="${itemList}" itemValue="itemId"
+										itemLabel="SKU" />
+								</form:select></td>
+						
+									<!-- <td><div class="dropdown">
 											<button class="btn btn-Default dropdown-toggle" type="button"
 												data-toggle="dropdown" aria-haspopup="true"
 												aria-expanded="true">
@@ -150,7 +159,7 @@
 												<li><a class="btn btn-default" data-toggle="modal"
 													data-target="#itemModal">Add New Item</a></li>
 											</ul>
-										</div></td>
+										</div></td> -->
 									<!-- 	<a class="btn btn-success" data-toggle="modal" data-target="#itemModal">Add New Item</a> -->
 									<%-- <a href="<c:url value="#itemModal" />">ADD NEWITEM</a> --%>
 
@@ -160,7 +169,7 @@
 									<td><form:input type="hidden" id="itemtype" path=""></form:input></td>
 									<td><form:input type="hidden" id="HSN" path=""></form:input></td>
 									<td><form:input type="text" id="Qty" style=" width: 50px;"
-											path=""></form:input></td>
+											path="item.quantity"></form:input></td>
 									<td><form:input type="text" id="Rate/Item"
 											style="width: 50px;" path=""></form:input></td>
 									<td><form:input type="text" id="Discount"
@@ -168,17 +177,17 @@
 									<td><form:input type="text" id="TaxableValue"
 											style="width: 50px;" path=""></form:input></td>
 									<td><form:input type="text" id="CGST%"
-											style="width: 50px;" path=""></form:input></td>
+											style="width: 50px;" path="item.cgstPercentage"></form:input></td>
 									<td><form:input type="text" id="CGSTAmt"
-											style="width: 50px;" path=""></form:input></td>
+											style="width: 50px;" path="item.cgstAmount"></form:input></td>
 									<td><form:input type="text" id="SGST%"
-											style="width: 50px;" path=""></form:input></td>
+											style="width: 50px;" path="item.sgstPercentage"></form:input></td>
 									<td><form:input type="text" id="SGSTAmt"
-											style="width: 50px;" path=""></form:input></td>
+											style="width: 50px;" path="item.sgstAmount"></form:input></td>
 									<td><form:input type="text" id="IGST%"
-											style="width: 50px;" path=""></form:input></td>
+											style="width: 50px;" path="item.igstPercentage"></form:input></td>
 									<td><form:input type="text" id="IGSTAmt"
-											style="width: 50px;" path=""></form:input></td>
+											style="width: 50px;" path="item.igstAmount"></form:input></td>
 									<td><form:input type="hidden" id="Total" path=""></form:input></td>
 								</tr>
 							</table>
