@@ -44,6 +44,9 @@
 	<beans:bean id="AddressDAOImpl" class="com.SpringGST.DaoImpl.AddressDAOImpl">
 		<beans:property name="jdbcTemplateObject" ref="jt" />
 	</beans:bean>
+	<beans:bean id="InvoiceItemDAOImpl" class="com.SpringGST.DaoImpl.InvoiceItemDAOImpl">
+		<beans:property name="jdbcTemplateObject" ref="jt" />
+	</beans:bean>
 
 	<beans:bean id="conversionService"
 		class="org.springframework.format.support.FormattingConversionServiceFactoryBean">

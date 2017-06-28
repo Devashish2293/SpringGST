@@ -11,6 +11,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.SpringGST.Dao.AddressDAO;
 import com.SpringGST.Dao.ClientDAO;
+import com.SpringGST.Dao.InvoiceDAO;
 import com.SpringGST.Dao.ItemDAO;
 import com.SpringGST.FormObjects.ClientForm;
 import com.SpringGST.FormObjects.InvoiceForm;
@@ -42,13 +43,15 @@ public class HomeController {
   private ClientDAO clientDAO;
   @Autowired
   private AddressDAO addressDAO;
+  @Autowired
+  private InvoiceDAO invoiceDAO;
   
   @RequestMapping("/invoice")
   public ModelAndView handleRequest(HttpServletRequest request, HttpServletResponse response)
     throws ServletException, IOException, ParseException {
     logger.info("Return View");
-    List<Invoice> invoiceList = new ArrayList();
-    Client client1 = new Client("Arias Tech.");
+    List<Invoice> invoiceList = invoiceDAO.getInvoiceList();
+   /* Client client1 = new Client("Arias Tech.");
     Client client2 = new Client("Aztel Pvt. Ltd");
     Client client3 = new Client("Syntech Pvt. Ltd");
     Invoice invoice1 = new Invoice("MH39001",new SimpleDateFormat("dd/MM/yyyy").parse("22/5/2017") , new SimpleDateFormat("dd/MM/yyyy").parse("17/7/2017"), client1.getClientId(), 455290.0);
@@ -58,7 +61,8 @@ public class HomeController {
     invoiceList.add(invoice1);
     invoiceList.add(invoice2);
     invoiceList.add(invoice3);
-    invoiceList.add(invoice4);
+    invoiceList.add(invoice4);*/
+     
     return new ModelAndView("SalesInvoices" , "invoiceList" ,  invoiceList);
   }
   
