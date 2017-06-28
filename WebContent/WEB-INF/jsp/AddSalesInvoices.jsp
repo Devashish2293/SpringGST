@@ -51,8 +51,8 @@
 								<tr>
 									<th>Reference</th>
 								</tr>
-								<td><form:input type="text" id="reference" path="reference"
-										value="${invoice.reference}"></form:input></td>
+								<td><form:input type="text" id="invoiceId" path="invoiceId"
+										value="${invoice.invoiceId}"></form:input></td>
 							</table>
 						</div>
 						<div class="col-md-6">
@@ -306,36 +306,49 @@
 		<div class="modal-content">
 			<div class="modal-header">
 				<button type="button" class="close" data-dismiss="modal">&times;</button>
-				<h4 class="modal-title">Add New Customer</h4>
+				<h4 class="modal-title">Add New Client</h4>
 			</div>
 			<div class="modal-body">
-				<form:form action="/SpringGST/addinvoice/addCustomer" method="post"
-					commandName="newCustomer">
+				<form:form action="/SpringGST/addinvoice/addClient" method="post"
+					commandName="newClient">
+
+					<div class="form-group">
+						<label for="category">Category</label> <label
+							class="checkbox-inline"><form:radiobutton
+								path="client.isBusiness" id="category" value="true" />Business</label>
+
+						<label class="checkbox-inline"><form:radiobutton
+								path="client.isBusiness" id="category" value="false" />Individual</label>
+			
+					</div>
 					<div class="form-group">
 						<label for="businessName">Name</label>
-						<form:errors path="businessName" cssStyle="color: #ff0000;" />
-						<form:input path="businessName" id="businessName"
+						<form:errors path="client.businessName" cssStyle="color: #ff0000;" />
+						<form:input path="client.businessName" id="businessName"
 							class="form-control" />
 
 					</div>
 					<div class="form-group">
-						<label for="contactPerson">Contact Person</label>
-						<form:errors path="contactPerson" cssStyle="color: #ff0000;" />
-						<form:input path="contactPerson" id="contactPerson"
-							class="form-control" />
+						<label for="businessContactPerson">Contact Person</label>
+						<form:errors path="client.businessContactPerson"
+							cssStyle="color: #ff0000;" />
+						<form:input path="client.businessContactPerson"
+							id="businessContactPerson" class="form-control" />
 
 					</div>
 					<div class="form-group">
-						<label for="gstIN">GSTIN</label>
-						<form:errors path="gstIN" cssStyle="color: #ff0000;" />
-						<form:input path="gstIN" id="gstIN" class="form-control" />
+						<label for="clientGSTIN">GSTIN</label>
+						<form:errors path="client.clientGSTIN" cssStyle="color: #ff0000;" />
+						<form:input path="client.clientGSTIN" id="clientGSTIN"
+							class="form-control" />
 
 					</div>
 
 					<div class="form-group">
 						<label for="mobileNum">Mobile Num.</label>
-						<form:errors path="mobileNum" cssStyle="color: #ff0000;" />
-						<form:input path="mobileNum" id="mobileNum" class="form-control" />
+						<form:errors path="client.mobileNum" cssStyle="color: #ff0000;" />
+						<form:input path="client.mobileNum" id="mobileNum"
+							class="form-control" />
 
 					</div>
 					<div class="form-group">
@@ -347,10 +360,19 @@
 
 					</div>
 					<div class="form-group">
-						<label for="address.address">Address</label>
-						<form:errors path="address.address" cssStyle="color: #ff0000;" />
-						<form:input path="address.address" id="address.address"
-							class="form-control" />
+						<label for="address.address_line1">Address - Line 1 </label>
+						<form:errors path="address.address_line1"
+							cssStyle="color: #ff0000;" />
+						<form:input path="address.address_line1"
+							id="address.address_line1" class="form-control" />
+
+					</div>
+					<div class="form-group">
+						<label for="address.address_line1">Address - Line 2</label>
+						<form:errors path="address.address_line2"
+							cssStyle="color: #ff0000;" />
+						<form:input path="address.address_line2"
+							id="address.address_line2" class="form-control" />
 
 					</div>
 
@@ -371,24 +393,12 @@
 					</div>
 
 					<div class="form-group">
-						<label for="address.emailId">Email-ID</label>
-						<form:errors path="address.emailId" cssStyle="color: #ff0000;" />
-						<form:input path="address.emailId" id="address.emailId"
-							class="form-control" />
-
-					</div>
-
-					<div class="form-group">
 						<label for="address.landlineNum">LandLine Num.</label>
 						<form:errors path="address.landlineNum" cssStyle="color: #ff0000;" />
 						<form:input path="address.landlineNum" id="address.landlineNum"
 							class="form-control" />
 
 					</div>
-
-
-
-
 
 					<br>
 					<br>
