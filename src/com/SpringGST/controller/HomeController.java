@@ -55,6 +55,7 @@ public class HomeController {
     throws ServletException, IOException, ParseException {
     logger.info("Return View");
     List<Invoice> invoiceList = invoiceDAO.getInvoiceList();
+    
    /* Client client1 = new Client("Arias Tech.");
     Client client2 = new Client("Aztel Pvt. Ltd");
     Client client3 = new Client("Syntech Pvt. Ltd");

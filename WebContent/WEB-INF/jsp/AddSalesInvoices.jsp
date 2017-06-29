@@ -91,7 +91,7 @@
 									<tr>
 										<th>Billing Address <a href="/editAddress">edit</a></th>
 									</tr>
-									<td><form:input type="hidden" path="" id="invoice.billAddrs"></form:input></td>
+									<td><form:input type="hidden" path="" id="billAddrs" value=""></form:input></td>
 								</table>
 							</div>
 							<div class="col-md-6">
@@ -116,6 +116,8 @@
 				<br> <br> <br> <br>
 				<div class="row">
 					<div class="col-ms-12">
+					<a class="btn btn-success" data-toggle="modal"
+								data-target="#itemModal">Add New Item</a>
 						<div class="table-responsive overflow: visible">
 							<table class="table-condensed table-bordered">
 								<tr>
@@ -142,10 +144,9 @@
 								<tr>
 									<td><form:select path="invoiceItem.itemId">
 									<option value="NONE">Select</option>
-									<option class="btn btn-success" data-toggle="modal"
-								data-target="#itemModal">Add New Item</option>
+									
 									<form:options items="${itemList}" itemValue="itemId"
-										itemLabel="SKU" />
+										itemLabel="itemDescription" />
 								</form:select></td>
 						
 									<!-- <td><div class="dropdown">
