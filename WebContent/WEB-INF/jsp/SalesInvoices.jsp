@@ -1,6 +1,8 @@
 
 <%@include file="/WEB-INF/jsp/header.jsp" %>
 <%@taglib prefix="spring" uri="http://www.springframework.org/tags" %>
+
+
 <div class="container-wrapper">
     <div class="container">
 	<div class="page-header"  >
@@ -9,10 +11,9 @@
 				<p class="lead">Summary</p>
 				</div>
 				<div class="col-md-2 pull-right">
-				<a class="btn btn-success">Add New Invoice</a>
+				<a class="btn btn-success" href="<c:url value="/addinvoice" />" >Add New Invoice</a>
 			</div>
 			</div>
-			
 			<table class="table table-striped table-hover">
 				<thead>
 					<tr class="bg-primary">
@@ -28,16 +29,16 @@
 					<tr>
 						
 						<td>${invoice.invoiceId}</td>
-						<td>${invoice.customer.businessName}</td>
+						<td>${invoice.clientId}</td>
 						<td>${invoice.invoiceDate}</td>
 						<td>${invoice.dueDate}USD</td>
-						<td>${invoice.totalInvoiceValue}USD</td>
+						<td>${invoice.grandTotal}USD</td>
 						<td><a href="<spring:url value="/invoice/viewInvoice/${invoice.invoiceId}"/>"><span class="glyphicon glyphicon-info-sign"></span></a></td>
 					</tr>
 				</c:forEach>
 
 			</table>
+			
 </div>
 </div>
  <%@include file="/WEB-INF/jsp/footer.jsp" %>
- asdas

@@ -54,7 +54,7 @@
                     </ul>
                     <ul class="nav navbar-nav pull-right">
                     	<li><a href="<c:url value="#" />">Contact</a></li>
-                    	<li><a href="<c:url value="#" />">Items</a></li>
+                    	<li><a href="<c:url value="/items" />">Items</a></li>
                     </ul>
                 </div>
             </div>
