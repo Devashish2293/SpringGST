@@ -8,6 +8,12 @@
 <title>Insert title here</title>
 </head>
 <body>
-<a href="<c:url value="/welcome" />" > Click here to Enter</a>
+<a href="<c:url value="/invoice" />" > Click here to Enter</a>
+<br>
+<a href="<c:url value="/registration" />" > Click here to Register</a>
+<br>
+<a href="<c:url value="/newUser" />" > new User</a>
+<br>
+<a href="<c:url value="/users" />" >List of Users</a>
 </body>
 </html>

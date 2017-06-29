@@ -11,7 +11,7 @@
     <meta name="author" content="">
     <link rel="icon" href="../../favicon.ico">
 
-    <title>Music Store</title>
+    <title>SpringGST</title>
     
          
     <!-- Bootstrap core CSS -->
@@ -47,13 +47,15 @@
                 </div>
                 <div id="navbar" class="navbar-collapse collapse">
                     <ul class="nav navbar-nav">
-                        <li><a href="<c:url value="/" /> ">Sales Invoices</a></li>
-                        <li><a href="<c:url value="/productList" />">Credit/Debit</a></li>
-                        <li><a href="#contact">Advance Receipts</a></li>
-                     
+                        <li><a href="<c:url value="/invoice" /> ">Sales Invoices</a></li>
+                        <li><a href="<c:url value="#" />">Credit/Debit</a></li>
+                        <li><a href="#">Advance Receipts</a></li>
+                      <li><a href="<c:url value="/gstr/period/062017/outwardsupplies/summary" /> ">GSTR-1 Summary</a></li>
+                         <li><a href="<c:url value="/GSTR2Summary" /> ">GSTR-2</a></li>
                     </ul>
                     <ul class="nav navbar-nav pull-right">
-                    	<li><a href="<c:url value="/admin" />">Contact</a></li>
+                    	<li><a href="<c:url value="#" />">Contact</a></li>
+                    	<li><a href="<c:url value="/items" />">Items</a></li>
                     </ul>
                 </div>
             </div>
