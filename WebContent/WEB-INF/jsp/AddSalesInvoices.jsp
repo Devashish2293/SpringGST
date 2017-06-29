@@ -116,6 +116,8 @@
 				<br> <br> <br> <br>
 				<div class="row">
 					<div class="col-ms-12">
+					<a class="btn btn-success" data-toggle="modal"
+        data-target="#itemModal">Add New Item</a>
 						<div class="table-responsive overflow: visible">
 							<table class="table-condensed table-bordered">
 								<tr>
@@ -142,8 +144,7 @@
 								<tr>
 									<td><form:select path="invoiceItem.itemId">
 									<option value="NONE">Select</option>
-									<option class="btn btn-success" data-toggle="modal"
-								data-target="#itemModal">Add New Item</option>
+									
 									<form:options items="${itemList}" itemValue="itemId"
 										itemLabel="SKU" />
 								</form:select></td>

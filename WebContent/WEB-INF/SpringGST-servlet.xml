@@ -29,25 +29,43 @@
 		<beans:property name="password" value="root" />
 	</beans:bean>
 
+<beans:bean name="userDaoImpl" class="com.gst.DaoImpl.UserDaoImpl">
+		<beans:property name="jdbcTemplate" ref="jt" />
+	</beans:bean>
+	
+
+
 	<beans:bean id="jt" class="org.springframework.jdbc.core.JdbcTemplate">
 		<beans:property name="dataSource" ref="dataSource"></beans:property>
 	</beans:bean>
-	<beans:bean id="ItemDAOImpl" class="com.SpringGST.DaoImpl.ItemDAOImpl">
+	<beans:bean id="ItemDAOImpl" class="com.gst.DaoImpl.ItemDAOImpl">
 		<beans:property name="jdbcTemplateObject" ref="jt" />
 	</beans:bean>
-	<beans:bean id="ClientDAOImpl" class="com.SpringGST.DaoImpl.ClientDAOImpl">
+	<beans:bean id="ClientDAOImpl" class="com.gst.DaoImpl.ClientDAOImpl">
 		<beans:property name="jdbcTemplateObject" ref="jt" />
 	</beans:bean>
-		<beans:bean id="InvoiceDAOImpl" class="com.SpringGST.DaoImpl.InvoiceDAOImpl">
+		<beans:bean id="InvoiceDAOImpl" class="com.gst.DaoImpl.InvoiceDAOImpl">
 		<beans:property name="jdbcTemplateObject" ref="jt" />
 	</beans:bean>
-	<beans:bean id="AddressDAOImpl" class="com.SpringGST.DaoImpl.AddressDAOImpl">
+	<beans:bean id="AddressDAOImpl" class="com.gst.DaoImpl.AddressDAOImpl">
 		<beans:property name="jdbcTemplateObject" ref="jt" />
 	</beans:bean>
-	<beans:bean id="InvoiceItemDAOImpl" class="com.SpringGST.DaoImpl.InvoiceItemDAOImpl">
+	<beans:bean id="InvoiceItemDAOImpl" class="com.gst.DaoImpl.InvoiceItemDAOImpl">
+		<beans:property name="jdbcTemplateObject" ref="jt" />
+	</beans:bean>	
+	<beans:bean id="PortalUserDAOImpl" class="com.gst.DaoImpl.PortalUserDAOImpl">
 		<beans:property name="jdbcTemplateObject" ref="jt" />
 	</beans:bean>
-
+	<beans:bean id="HSNSACDAOImpl" class="com.gst.DaoImpl.HSNSACDAOImpl">
+		<beans:property name="jdbcTemplateObject" ref="jt" />
+	</beans:bean>
+	<beans:bean id="GSTRSummaryDAOImpl" class="com.gst.DaoImpl.GSTRSummaryDAOImpl">
+		<beans:property name="jdbcTemplateObject" ref="jt" />
+	</beans:bean>
+	<beans:bean id="InvoicesDAOImpl" class="com.gst.DaoImpl.InvoicesDAOImpl">
+		<beans:property name="jdbcTemplateObject" ref="jt" />
+	</beans:bean>
+	
 	<beans:bean id="conversionService"
 		class="org.springframework.format.support.FormattingConversionServiceFactoryBean">
 		<beans:property name="formatters">
@@ -57,6 +75,11 @@
 		</beans:property>
 	</beans:bean>
 	<context:component-scan base-package="com.SpringGST" />
+	<tx:annotation-driven />
+	
+	
+	
+	<context:component-scan base-package="com.gst" />
 	<tx:annotation-driven />
 
 	
